@@ -24,8 +24,10 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
             )
         )
         .add_prefix(".")
-        .load_modules("bmo.plugins.utilities")
     )
+
+    for folder in os.listdir("bmo/plugins"):
+        client.load_modules("bmo/plugins/" + folder)
 
     return client
 
