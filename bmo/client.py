@@ -24,7 +24,7 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
             )
         )
         .add_prefix(".")
-        .load_modules("bmo.plugins")
+        .load_modules("bmo.plugins.utilities")
     )
 
     return client
