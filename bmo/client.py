@@ -16,18 +16,15 @@ def build_bot() -> hikari.GatewayBot:
 
 def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     client = (
-        (
-            tanjun.Client.from_gateway_bot(
-                bot,
-                mention_prefix=True,
-                set_global_commands=[993565814517141514, 870013765071028285],
-            )
+        tanjun.Client.from_gateway_bot(
+            bot,
+            mention_prefix=True,
+            set_global_commands=[993565814517141514, 870013765071028285],
         )
-        .add_prefix(".")
-    )
+    ).add_prefix(".")
 
     for folder in os.listdir("bmo/plugins"):
-        client.load_modules("bmo/plugins/" + folder)
+        client.load_modules("bmo.plugins." + folder)
 
     return client
 

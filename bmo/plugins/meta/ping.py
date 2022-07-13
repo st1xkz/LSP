@@ -1,5 +1,6 @@
-import tanjun
 import time
+
+import tanjun
 
 component = tanjun.Component()
 
@@ -9,8 +10,7 @@ component = tanjun.Component()
 async def cmd_ping(ctx: tanjun.abc.Context) -> None:
     start = time.perf_counter()
     message = await ctx.respond(
-        f"Pong! 🏓 \n"
-        f"Ws Latency: **{ctx.client.heartbeat_latency * 1000:.0f}ms**"
+        f"Pong! 🏓 \n" f"Ws Latency: **{ctx.client.heartbeat_latency * 1000:.0f}ms**"
     )
     end = time.perf_counter()
 
