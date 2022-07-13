@@ -6,10 +6,7 @@ meta = tanjun.Component(name="meta")
 
 
 @meta.with_slash_command
-@tanjun.as_slash_command(
-    name="ping",
-    description="Shows bot's ping/latency",
-)
+@tanjun.as_slash_command("ping", "Shows bot's ping/latency")
 async def cmd_ping(ctx: tanjun.abc.Context) -> None:
     start = time.perf_counter()
     message = await ctx.respond(
