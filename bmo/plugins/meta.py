@@ -2,7 +2,7 @@ import time
 
 import tanjun
 
-meta = tanjun.Component("meta")
+meta = tanjun.Component(name="meta")
 
 
 @meta.with_slash_command
