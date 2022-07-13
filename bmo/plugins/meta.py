@@ -5,6 +5,7 @@ import tanjun
 meta = tanjun.Component(name="meta")
 
 
+
 @meta.with_slash_command
 @tanjun.as_slash_command("ping", "Shows bot's ping/latency")
 async def cmd_ping(ctx: tanjun.abc.Context) -> None:
