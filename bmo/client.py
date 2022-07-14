@@ -4,6 +4,8 @@ import hikari
 import tanjun
 import uvloop
 
+from bmo.core import color_logs
+
 
 def build_bot() -> hikari.GatewayBot:
     TOKEN = os.environ["TOKEN"]
