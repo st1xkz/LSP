@@ -21,11 +21,10 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
         (
             tanjun.Client.from_gateway_bot(
                 bot,
-                mention_prefix=True,
+                banner=None,
                 set_global_commands=[993565814517141514, 870013765071028285],
             )
         )
-        .add_prefix(".")
         .load_modules("bmo.plugins.meta")
     )
 
