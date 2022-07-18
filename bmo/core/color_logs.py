@@ -2,11 +2,11 @@ import logging
 
 FMT = "[{levelname}] {name}: {message}"
 FORMATS = {
-    logging.DEBUG: f"\33[38;2;235;219;178m{FMT}\33[0m",
-    logging.INFO: f"\33[38;2;142;192;124m{FMT}\33[0m",
-    logging.WARNING: f"\33[38;2;250;189;47m{FMT}\33[0m",
-    logging.ERROR: f"\33[38;2;254;128;25m{FMT}\33[0m",
-    logging.CRITICAL: f"\33[38;2;249;72;51m{FMT}\33[0m",
+    logging.DEBUG: f"\33[38;2;119;242;242m{FMT}\33[0m",
+    logging.INFO: f"\33[38;2;92;185;242m{FMT}\33[0m",
+    logging.WARNING: f"\33[38;2;50;105;217m{FMT}\33[0m",
+    logging.ERROR: f"\33[38;2;10;1;64m{FMT}\33[0m",
+    logging.CRITICAL: f"\33[38;2;242;187;227m{FMT}\33[0m",
 }
 
 
