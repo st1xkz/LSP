@@ -9,7 +9,11 @@ from bmo.core import color_logs
 
 def build_bot() -> hikari.GatewayBot:
     TOKEN = os.environ["TOKEN"]
-    bot = hikari.GatewayBot(TOKEN)
+    bot = hikari.GatewayBot(
+        TOKEN,
+        banner=None,
+        intents=hikari.Intents.ALL,
+    )
 
     make_client(bot)
 
@@ -17,15 +21,16 @@ def build_bot() -> hikari.GatewayBot:
 
 
 def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
-    client = (
-        (
-            tanjun.Client.from_gateway_bot(
-                bot,
-                set_global_commands=[993565814517141514, 870013765071028285],
-            )
-        )
-        .load_modules("bmo.plugins.meta")
+    client = tanjun.Client.from_gateway_bot(
+        bot,
+        set_global_commands=[993565814517141514, 870013765071028285],
     )
+
+    return client
+
+
+def load_plugins(client: tanjun.Client) -> tanjun.Client:
+    (client.load_modules("bmo.plugins.meta"))
 
     return client
 
