@@ -25,6 +25,12 @@ async def cmd_ping(
     )
 
 
+@meta.with_slash_command
+@tanjun.as_slash_command("botinfo", ["bot", "stats"], "Displays info about the bot")
+async def cmd_bot(ctx: tanjun.abc.Context) -> None:
+    pass
+
+
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(meta.copy())
