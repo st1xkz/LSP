@@ -54,7 +54,7 @@ async def cmd_bot(ctx: tanjun.abc.Context) -> None:
         mem_total = virtual_memory().total / (1024**2)
         mem_of_total = proc.memory_percent()
         mem_usage = mem_total * (mem_of_total / 100)
-        bot_user = ctx.client.get_me()
+        bot_user = ctx.bot.get_me()
 
         member = bot_user
         color = (
@@ -72,9 +72,9 @@ async def cmd_bot(ctx: tanjun.abc.Context) -> None:
         embed = (
             hikari.Embed(
                 title="Statistics for DJ BMO",
-                description=f"""Guild Count: **{len(ctx.client.cache.get_available_guilds_view())}**
-User Count: **{len(ctx.client.cache.get_users_view())}**
-Command Count: **{len(ctx.client.slash_commands)}**
+                description=f"""Guild Count: **{len(ctx.bot.cache.get_available_guilds_view())}**
+User Count: **{len(ctx.bot.cache.get_users_view())}**
+Command Count: **{len(ctx.bot.slash_commands)}**
 
 Uptime: **{uptime}**
 CPU Time: **{cpu_time}**
