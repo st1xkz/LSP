@@ -8,7 +8,7 @@ import hikari
 import tanjun
 from psutil import Process, virtual_memory
 
-from bmo.utils import chron
+from bmo.core.utils import chron
 
 meta = tanjun.Component(name="meta")
 
