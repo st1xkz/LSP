@@ -23,7 +23,10 @@ def build_bot() -> hikari.GatewayBot:
 def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     client = tanjun.Client.from_gateway_bot(
         bot,
-        set_global_commands=[993565814517141514, 870013765071028285],
+        set_global_commands=[
+            993565814517141514,
+            870013765071028285,
+        ],
     )
 
     return client
