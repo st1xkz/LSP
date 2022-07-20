@@ -28,12 +28,7 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
             870013765071028285,
         ],
     )
-
-    return client
-
-
-def load_plugins(client: tanjun.Client) -> tanjun.Client:
-    (client.load_modules("bmo.plugins.meta"))
+    client.load_modules("bmo.plugins.meta")
 
     return client
 
