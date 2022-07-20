@@ -83,7 +83,7 @@ Memory Usage: **{mem_usage:,.3f}/{mem_total:,.0f} MiB ({mem_of_total:,.0f}%)**
 Language: **Python**
 Python Version: **v{platform.python_version()}**
 Library: **hikari-py v{hikari.__version__}**
-Command Handler: **hikari-lightbulb v{tanjun.__version__}**""",
+Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
                 color=color,
                 timestamp=datetime.now().astimezone(),
             )
