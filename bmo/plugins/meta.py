@@ -34,7 +34,7 @@ async def cmd_ping(
 @meta.with_slash_command
 @tanjun.as_slash_command("botinfo", "Displays info about the bot")
 async def cmd_bot(
-    ctx: tanjun.abc.Context, client: alluka.Injected[hikari.GatewayBot]
+    ctx: tanjun.abc.Context, client: alluka.Injected[tanjun.abc.Client]
 ) -> None:
     if not (guild := ctx.get_guild()):
         return
@@ -76,7 +76,7 @@ async def cmd_bot(
                 title="Statistics for DJ BMO",
                 description=f"""Guild Count: **{len(client.cache.get_available_guilds_view())}**
 User Count: **{len(client.cache.get_users_view())}**
-Command Count: **{sum(1 for _ in tanjun.Client.client.iter_slash_commands())}**
+Command Count: **{sum(1 for _ in client.iter_slash_commands())}**
 
 Uptime: **{uptime}**
 CPU Time: **{cpu_time}**
