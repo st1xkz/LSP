@@ -34,7 +34,7 @@ async def cmd_ping(
 @meta.with_slash_command
 @tanjun.as_slash_command("botinfo", "Displays info about the bot")
 async def cmd_bot(
-    ctx: tanjun.abc.Context, client: alluka.Injected[hikari.GatewayBot]
+    ctx: tanjun.abc.Context, client: alluka.Injected[tanjun.Client]
 ) -> None:
     if not (guild := ctx.get_guild()):
         return
