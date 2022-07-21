@@ -34,7 +34,9 @@ async def cmd_ping(
 @meta.with_slash_command
 @tanjun.as_slash_command("botinfo", "Displays info about the bot")
 async def cmd_bot(
-    ctx: tanjun.abc.Context, client: alluka.Injected[tanjun.abc.Client]
+    ctx: tanjun.abc.Context,
+    bot: alluka.Injected[hikari.GatewayBot],
+    client: alluka.Injected[tanjun.abc.Client],
 ) -> None:
     if not (guild := ctx.get_guild()):
         return
@@ -56,7 +58,7 @@ async def cmd_bot(
         mem_total = virtual_memory().total / (1024**2)
         mem_of_total = proc.memory_percent()
         mem_usage = mem_total * (mem_of_total / 100)
-        bot_user = client.get_me()
+        bot_user = bot.get_me()
 
         member = bot_user
         color = (
@@ -74,8 +76,8 @@ async def cmd_bot(
         embed = (
             hikari.Embed(
                 title="Statistics for DJ BMO",
-                description=f"""Guild Count: **{len(client.cache.get_available_guilds_view())}**
-User Count: **{len(client.cache.get_users_view())}**
+                description=f"""Guild Count: **{len(ctx.cache.get_available_guilds_view())}**
+User Count: **{len(ctx.cache.get_users_view())}**
 Command Count: **{sum(1 for _ in client.iter_slash_commands())}**
 
 Uptime: **{uptime}**
@@ -100,4 +102,3 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(meta.copy())
-
