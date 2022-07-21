@@ -100,3 +100,4 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(meta.copy())
+
