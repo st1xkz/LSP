@@ -76,7 +76,7 @@ async def cmd_bot(
                 title="Statistics for DJ BMO",
                 description=f"""Guild Count: **{len(client.cache.get_available_guilds_view())}**
 User Count: **{len(client.cache.get_users_view())}**
-Command Count: **{len(client.slash_commands)}**
+Command Count: **{sum(1 for _ in client.iter_slash_commands())}**
 
 Uptime: **{uptime}**
 CPU Time: **{cpu_time}**
