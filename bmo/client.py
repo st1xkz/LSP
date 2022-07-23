@@ -30,6 +30,7 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
         ],
     )
     client.load_modules("bmo.plugins.meta")
+    client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
 
     return client
 
