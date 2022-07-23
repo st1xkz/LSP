@@ -13,7 +13,6 @@ def build_bot() -> hikari.GatewayBot:
         TOKEN,
         banner=None,
         intents=hikari.Intents.ALL,
-        help_slash_command=True,
     )
 
     make_client(bot)
