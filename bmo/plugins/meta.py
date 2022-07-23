@@ -20,7 +20,7 @@ async def cmd_ping(
 ) -> None:
     start = time.perf_counter()
     message = await ctx.respond(
-        f"Pong! 🏓 \n" f"Ws Latency: **{client.heartbeat_latency * 1000:.0f}ms**"
+        f"Pong! 🏓 \n" f"Ws Latency: **{ctx.bot.heartbeat_latency * 1000:.0f}ms**"
     )
     end = time.perf_counter()
 
