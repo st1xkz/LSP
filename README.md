@@ -7,3 +7,10 @@
 ![dj bmo](https://cdn.discordapp.com/attachments/993567969839960135/1000418668225757224/3E405E57-A522-49F2-952B-A6D044A4F599.png)
 
 </div>
+
+<div align="center">
+
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-390/)
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://pypi.org/project/black)
+
+</div>
