@@ -1,4 +1,6 @@
-![image](https://img.shields.io/badge/Python-3.10-blue?style=flat)
+<div align="center">
+
+# DJ BMO
 
 <div align="center">
 
