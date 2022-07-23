@@ -8,7 +8,9 @@ errors = tanjun.AnyHooks()
 async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
     users = [690631795473121280, 994738626816647262]
 
-    await ctx.respond(f"Something went wrong during invocation of command `{ctx.command.name}`.")
+    await ctx.respond(
+        f"Something went wrong during invocation of command `{ctx.command.name}`."
+    )
 
     for user in users:
         embed = hikari.Embed(
