@@ -17,7 +17,7 @@ async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
             title=f"An unexpected {type(exc).__name__} occurred",
             description=f"```py\n{str(exc)[:1950]}```",
         )
-        await user.send(embed)
+        await users.send(embed)
 
 
 @errors.add_to_command
