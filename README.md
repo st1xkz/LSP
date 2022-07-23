@@ -1,6 +1,6 @@
 <div align="center">
 
-# DJ BMO
+# DJ-BMO
 
 <div align="center">
 
