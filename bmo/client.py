@@ -5,6 +5,7 @@ import tanjun
 import uvloop
 
 from bmo.core import color_logs
+from bmo.errors import *
 
 
 def build_bot() -> hikari.GatewayBot:
