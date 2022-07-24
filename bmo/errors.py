@@ -11,8 +11,8 @@ async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
     )
     
     embed = hikari.Embed(
-        title=f"An unexpected {type(exc).__name__} occurred",
-        description=f"```py\n{str(exc)[:1950]}```",
+        title=f"An unexpected `{type(exc).__name__}` occurred",
+        description=f"```py\n{str(exc).format_traceback}```",
     )
     await ctx.respond(embed)
 
