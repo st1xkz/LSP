@@ -24,10 +24,6 @@ def build_bot() -> hikari.GatewayBot:
 def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     client = tanjun.Client.from_gateway_bot(
         bot,
-        set_global_commands=[
-            993565814517141514,
-            870013765071028285,
-        ],
     )
     client.load_modules("bmo.plugins.meta")
     client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
