@@ -16,11 +16,13 @@ async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
         f"Something went wrong during invocation of command `{ctx.command.name}`."
     )
 
-    embed = hikari.Embed(
-        title=f"An unexpected `{type(exc).__name__}` occurred",
-        description=f"```py\n{''.join(format_exception(exc.__class__, exc, exc.__traceback__))}```",
-    )
-    await users.send(embed)
+    for user in users:
+        user.send(
+            embed = hikari.Embed(
+                title=f"An unexpected `{type(exc).__name__}` occurred",
+                description=f"```py\n{''.join(format_exception(exc.__class__, exc, exc.__traceback__))}```",
+            )
+        )
 
 
 @errors.add_to_command
