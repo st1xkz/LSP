@@ -1,13 +1,15 @@
 import hikari
 import tanjun
 
+from traceback import format_exception
+
 errors = tanjun.AnyHooks()
 
 
 @errors.with_on_error
 async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
     users = ctx.cache.get_user(
-        690631795473121280, 994738626816647262
+        994738626816647262
     )  # 1: main, 2: second
 
     await ctx.respond(
@@ -16,7 +18,7 @@ async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
 
     embed = hikari.Embed(
         title=f"An unexpected `{type(exc).__name__}` occurred",
-        description=f"```py\n{str(exc)[:1950]}```",
+        description=f"```py\n{''.join(format_exception(exc.__class__, exc, exc.__traceback__))}```",
     )
     await users.send(embed)
 
