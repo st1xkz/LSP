@@ -1,6 +1,5 @@
 import hikari
 import tanjun
-import traceback
 
 errors = tanjun.AnyHooks()
 
@@ -13,7 +12,7 @@ async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
     
     embed = hikari.Embed(
         title=f"An unexpected `{type(exc).__name__}` occurred",
-        description=f"```py\n{str(traceback.format_traceback)}```",
+        description=f"```py\n{str(exc)[:1950]}```",
     )
     await ctx.respond(embed)
 
