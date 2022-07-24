@@ -17,7 +17,7 @@ async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
     )
 
     for user in users:
-        user.send(
+        await user.send(
             embed = hikari.Embed(
                 title=f"An unexpected `{type(exc).__name__}` occurred",
                 description=f"```py\n{''.join(format_exception(exc.__class__, exc, exc.__traceback__))}```",
