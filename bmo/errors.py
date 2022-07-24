@@ -1,16 +1,16 @@
+from traceback import format_exception
+
 import hikari
 import tanjun
-
-from traceback import format_exception
 
 errors = tanjun.AnyHooks()
 
 
 @errors.with_on_error
 async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
-    users = ctx.cache.get_user(
-        994738626816647262
-    )  # 1: main, 2: second
+    users = [
+        ctx.cache.get_user(user) for user in [690631795473121280, 994738626816647262]
+    ]  # 1: main, 2: second
 
     await ctx.respond(
         f"Something went wrong during invocation of command `{ctx.command.name}`."
