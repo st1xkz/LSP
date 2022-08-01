@@ -69,7 +69,7 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     ) -> None:
         """Event that triggers when the hikari gateway is ready."""
         builder = (
-            lavasnek_rs.LavalinkBuilder(event.my_user.id, build_bot.bot.TOKEN)
+            lavasnek_rs.LavalinkBuilder(event.my_user.id, TOKEN)
             .set_host("127.0.0.1")
             .set_password(LAVALINK_PASSWORD)
             .set_start_gateway(False)
