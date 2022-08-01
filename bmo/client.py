@@ -65,7 +65,7 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     @client.with_listener(hikari.ShardReadyEvent)
     async def on_shard_ready(
         event: hikari.ShardReadyEvent,
-        client_: tanjun.Client = tanjun.Injected(type=tanjun.Client),
+        client_: tanjun.Client = tanjun.injected(type=tanjun.Client),
     ) -> None:
         """Event that triggers when the hikari gateway is ready."""
         builder = (
@@ -86,7 +86,7 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     @client.with_listener(hikari.VoiceStateUpdateEvent)
     async def on_voice_state_update(
         event: hikari.VoiceStateUpdateEvent,
-        lavalink: lavasnek_rs.Lavalink = tanjun.Injected(type=lavasnek_rs.Lavalink),
+        lavalink: lavasnek_rs.Lavalink = tanjun.injected(type=lavasnek_rs.Lavalink),
     ) -> None:
         """Passes voice state updates to Lavalink."""
         lavalink.raw_handle_event_voice_state_update(
