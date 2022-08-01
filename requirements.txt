@@ -2,3 +2,4 @@ hikari
 hikari-tanjun
 uvloop
 psutil
+lavasnek-rs==0.1.0a5
