@@ -2,3 +2,6 @@ hikari
 hikari-tanjun
 uvloop
 psutil
+songbird-py
+opus
+ffmpeg
