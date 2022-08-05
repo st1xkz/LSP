@@ -3,5 +3,4 @@ hikari-tanjun
 uvloop
 psutil
 songbird-py==0.1.7
-Opus
 FFmpeg
