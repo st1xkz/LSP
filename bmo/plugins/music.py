@@ -13,7 +13,7 @@ music = tanjun.Component(name="music")
 @tanjun.as_slash_command("play", "Plays a song from URL")
 async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
     guild = ctx.get_guild()
-    user_voice = guild.get_voice_state(ctx.user)
+    user_voice = guild.get_voice_state(ctx.author)
     vc = user_voice.channel_id
     voice = await Voicebox.connect(ctx.client, ctx.guild_id, vc)
 
