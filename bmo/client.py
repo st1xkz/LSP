@@ -24,6 +24,7 @@ def build_bot() -> hikari.GatewayBot:
 def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     client = tanjun.Client.from_gateway_bot(
         bot,
+        declare_global_commands=True,
     )
     client.load_modules("bmo.plugins.meta")
     client.load_modules("bmo.plugins.music")
