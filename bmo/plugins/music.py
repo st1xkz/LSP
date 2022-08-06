@@ -1,7 +1,7 @@
+from asyncio import sleep
+
 import hikari
 import tanjun
-
-from asyncio import sleep
 from songbird import ytdl
 from songbird.hikari import Voicebox
 
@@ -17,7 +17,7 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
     guild = ctx.get_guild()
     voice_state = guild.get_voice_state(ctx.author)
     vc = voice_state.channel_id
-    if voice_state is None:
+    if vc is None:
         await ctx.respond("Please connect to a voice channel first.")
     voice = await Voicebox.connect(ctx.client, ctx.guild_id, vc)
 
