@@ -19,7 +19,7 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
     if not voice_state or not voice_state.channel_id:
         await ctx.respond("Please connect to a voice channel first.")
         return None
-    voice = await Voicebox.connect(ctx.client, ctx.guild_id, vc)
+    voice = await Voicebox.connect(ctx.client, ctx.guild_id, voice_state.channel_id)
 
     track_handle = await voice.play_source(await ytdl(url))
     track_handle.play()
