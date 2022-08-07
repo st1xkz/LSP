@@ -28,12 +28,12 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
 
 @music.with_slash_command
 @tanjun.as_slash_command("leave", "Leaves the connected voice channel")
-async def cmd_leave(ctx: tanjun.abc.Context) -> None:
+async def cmd_leave(self, ctx: tanjun.abc.Context) -> None:
     assert ctx.guild_id is not None
 
     guild = ctx.get_guild()
     voice_state = guild.get_voice_state(ctx.author)
-    voice = await Voicebox.disconnect()
+    voice = await Voicebox.disconnect(ctx.guild_id)
     
     if voice:
         await ctx.respond(f"👋 **Successfully disconnected from `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**")
