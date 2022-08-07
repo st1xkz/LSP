@@ -21,7 +21,7 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
         return None
     voice = await Voicebox.connect(ctx.client, ctx.guild_id, voice_state.channel_id)
 
-    await ctx.respond(f"👍 **Joined <#{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}>**")
+    await ctx.respond(f"👍 **Joined `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**")
     track_handle = await voice.play_source(await ytdl(url))
     track_handle.play()
 
@@ -36,7 +36,7 @@ async def cmd_leave(ctx: tanjun.abc.Context) -> None:
 
     ret = await ctx.client.leave_vc(ctx.guild_id)
     if ret:
-        await ctx.respond(f"👋 **Successfully disconnected from {ctx.client.cache.get_guild_channel(voice_state.channel_id).mention}**")
+        await ctx.respond(f"👋 **Successfully disconnected from `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**")
     else:
         await ctx.respond("I am not connected to a voice channel.")
 
