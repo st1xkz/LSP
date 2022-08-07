@@ -33,9 +33,9 @@ async def cmd_leave(ctx: tanjun.abc.Context) -> None:
 
     guild = ctx.get_guild()
     voice_state = guild.get_voice_state(ctx.author)
-
-    ret = await ctx.client.leave_vc(ctx.guild_id)
-    if ret:
+    voice = await Voicebox.disconnect(ctx.client, ctx.guild_id, voice_state.channel_id)
+    
+    if voice:
         await ctx.respond(f"👋 **Successfully disconnected from `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**")
     else:
         await ctx.respond("I am not connected to a voice channel.")
