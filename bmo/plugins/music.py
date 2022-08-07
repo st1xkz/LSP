@@ -26,6 +26,12 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
     track_handle.play()
 
 
+@music.with_slash_command
+@tanjun.as_slash_command("leave", "Leaves the connected voice channel")
+async def cmd_leave(ctx: tanjun.abc.Context) -> None:
+    ...
+
+
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(music.copy())
