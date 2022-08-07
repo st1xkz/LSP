@@ -21,7 +21,7 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
         return None
     voice = await Voicebox.connect(ctx.client, ctx.guild_id, voice_state.channel_id)
 
-    await ctx.respond(f"👍 **Joined `{voice_state.channel_id.name}`**")
+    await ctx.respond(f"👍 **Joined `{guild.get_channel(voice_state).name}`**")
     track_handle = await voice.play_source(await ytdl(url))
     track_handle.play()
 
