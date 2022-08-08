@@ -1,6 +1,3 @@
-from asyncio import sleep
-
-import hikari
 import tanjun
 from songbird import ytdl
 from songbird.hikari import Voicebox
@@ -21,7 +18,9 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
         return None
     voice = await Voicebox.connect(ctx.client, ctx.guild_id, voice_state.channel_id)
 
-    await ctx.respond(f"👍 **Joined `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**")
+    await ctx.respond(
+        f"👍 **Joined `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**"
+    )
     track_handle = await voice.play_source(await ytdl(url))
     track_handle.play()
 
@@ -31,12 +30,15 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
 async def cmd_leave(ctx: tanjun.abc.Context) -> None:
     assert ctx.guild_id is not None
 
-    guild = ctx.get_guild()
-    voice_state = guild.get_voice_state(ctx.author)
-    voice = await ctx.client.voice.disconnect(ctx.guild_id)
-    
     if voice:
-        await ctx.respond(f"👋 **Successfully disconnected from `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**")
+        await ctx.respond(
+            f"👋 **Successfully disconnected from `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**"
+        )
+
+        guild = ctx.get_guild()
+        voice_state = guild.get_voice_state(ctx.author)
+        voice = await ctx.client.voice.disconnect(ctx.guild_id)
+
     else:
         await ctx.respond("I am not connected to a voice channel.")
 
