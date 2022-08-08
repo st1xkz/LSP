@@ -33,7 +33,7 @@ async def cmd_leave(ctx: tanjun.abc.Context) -> None:
 
     guild = ctx.get_guild()
     voice_state = guild.get_voice_state(ctx.author)
-    voice = await ctx.client.voice.disconnect()
+    voice = await ctx.client.voice.disconnect(ctx.guild_id)
     
     if voice:
         await ctx.respond(f"👋 **Successfully disconnected from `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**")
