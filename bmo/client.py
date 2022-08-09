@@ -26,7 +26,6 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
         bot,
         declare_global_commands=True,
     )
-    client.load_modules("bmo.plugins.help")
     client.load_modules("bmo.plugins.meta")
     client.load_modules("bmo.plugins.music")
     client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
