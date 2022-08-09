@@ -20,7 +20,6 @@ def build_bot() -> hikari.GatewayBot:
 
     return bot
 
-
 def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     client = tanjun.Client.from_gateway_bot(
         bot,

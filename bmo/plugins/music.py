@@ -32,7 +32,7 @@ async def cmd_leave(ctx: tanjun.abc.Context) -> None:
 
     guild = ctx.get_guild()
     voice_state = guild.get_voice_state(ctx.author)
-    if ctx.client not in voice_state or not voice_state.channel_id:
+    if not voice_state or not voice_state.channel_id:
         await ctx.respond("I am not connected to a voice channel.")
     voice = await ctx.client.voice.disconnect(ctx.client, ctx.guild_id, None)
 
