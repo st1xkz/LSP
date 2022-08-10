@@ -8,7 +8,7 @@ help = tanjun.Component(name="help")
 @tanjun.with_str_slash_option("obj", "Object to get help for", default=False)
 @tanjun.as_slash_command("help", "Shows help about all or one specific command")
 async def custom_help(ctx: tanjun.abc.Context, obj: str) -> None:
-    if obj is None:
+    if not obj:
         await ctx.respond("this is help")
 
 
