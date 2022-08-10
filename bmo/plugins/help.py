@@ -1,3 +1,4 @@
+import alluka
 import hikari
 import tanjun
 
@@ -7,12 +8,26 @@ help = tanjun.Component(name="help")
 @help.with_slash_command
 @tanjun.with_str_slash_option("obj", "Object to get help for", default=False)
 @tanjun.as_slash_command("help", "Shows help about all or one specific command")
-async def custom_help(ctx: tanjun.abc.Context, obj: str) -> None:
+async def custom_help(
+    ctx: tanjun.abc.Context,
+    obj: str,
+    bot: alluka.Injected[hikari.GatewayBot],
+) -> None:
+    bot_user = bot.get_me()
+
     if not obj:
         embed = hikari.Embed(
             description="""Welcome to DJ BMO's help!
 Find all the commands available on this panel.""",
             color=0x77F2F2,
+        )
+        embed.set_author(
+            name="DJ BMO • Help",
+            icon=bot_user.avatar_url or bot_user.default_avatar_url,
+        )
+        embed.set_thumbnail(bot_user.avatar_url or bot_user.default_avatar_url)
+        embed.set_footer(
+            text="DJ BMO", icon=bot_user.avatar_url or bot_user.default_avatar_url
         )
         await ctx.respond(embed)
 
