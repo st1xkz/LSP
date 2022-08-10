@@ -1,6 +1,7 @@
 import alluka
 import hikari
 import tanjun
+from bmo.core import chron
 
 help = tanjun.Component(name="help")
 
@@ -14,6 +15,7 @@ async def custom_help(
     bot: alluka.Injected[hikari.GatewayBot],
 ) -> None:
     bot_user = bot.get_me()
+    cd = chron.short_date_and_time(bot_user.created_at)
 
     if not obj:
         embed = hikari.Embed(
@@ -27,7 +29,8 @@ Find all the commands available on this panel.""",
         )
         embed.set_thumbnail(bot_user.avatar_url or bot_user.default_avatar_url)
         embed.set_footer(
-            text="DJ BMO", icon=bot_user.avatar_url or bot_user.default_avatar_url
+            text=f"DJ BMO was created {cd}",
+            icon=bot_user.avatar_url or bot_user.default_avatar_url,
         )
         await ctx.respond(embed)
 
