@@ -22,7 +22,7 @@ def long_date_and_short_time(obj: dt.datetime) -> str:
 
 
 def short_date_and_time(obj: dt.datetime) -> str:
-    return obj.strftime("%d/%m/%y %H:%M:%S")
+    return obj.strftime("%d/%m/%y %Y %I:%M %p")
 
 
 def long_date(obj: dt.datetime) -> str:
