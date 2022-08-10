@@ -9,7 +9,12 @@ help = tanjun.Component(name="help")
 @tanjun.as_slash_command("help", "Shows help about all or one specific command")
 async def custom_help(ctx: tanjun.abc.Context, obj: str) -> None:
     if not obj:
-        await ctx.respond("this is help")
+        embed = hikari.Embed(
+            description="""Welcome to DJ BMO's help!
+Find all the commands available on this panel.""",
+            color=0x77F2F2,
+        )
+        await ctx.respond(embed)
 
 
 @tanjun.as_loader
