@@ -19,7 +19,7 @@ async def custom_help(
 
     comp_desc = ""
     for component in ctx.client.components:
-        comp_desc += f"`{component}` {ctx.client.components[component].__doc__}\n"
+        comp_desc += f"`{component}`"
 
     if not obj:
         embed = hikari.Embed(
