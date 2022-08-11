@@ -27,7 +27,7 @@ async def custom_help(
 Find all the commands available on this panel.""",
             color=0x77F2F2,
         )
-        embed.add_field(name="Modules", description=comp_desc, inline=False)
+        embed.add_field(name="Modules", value=comp_desc, inline=False)
         embed.set_author(
             name="DJ BMO • Help",
             icon=bot_user.avatar_url or bot_user.default_avatar_url,
