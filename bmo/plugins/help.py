@@ -43,22 +43,6 @@ Find all the commands available on this panel.""",
         await ctx.respond(embed)
 
 
-"""
-    elif obj in ctx.client.cogs:
-        plugin = ctx.client.get_cog(obj)
-        await ctx.respond("this is plugin help")
-
-    elif obj in ctx.client.all_commands:
-        cmd = ctx.client.get_command(obj)
-        if isinstance(cmd, commands.Group):
-            await ctx.respond("this is group help")
-        else:
-            await ctx.respond("this is command help")
-    else:
-        await ctx.respond("command or category could not be found")
-"""
-
-
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(help.copy())
