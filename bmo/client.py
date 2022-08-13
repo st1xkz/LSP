@@ -12,7 +12,7 @@ load_dotenv()
 
 
 def build_bot() -> hikari.GatewayBot:
-    TOKEN = os.getenv("BOT_TOKEN")
+    TOKEN = os.getenv("TOKEN")
     bot = hikari.GatewayBot(
         TOKEN,
         banner=None,
