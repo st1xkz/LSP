@@ -1,6 +1,4 @@
 import tanjun
-from songbird import ytdl
-from songbird.hikari import Voicebox
 
 music = tanjun.Component(name="music")
 
@@ -9,6 +7,10 @@ music = tanjun.Component(name="music")
 @tanjun.with_str_slash_option("url", "the URL of the song")
 @tanjun.as_slash_command("play", "Plays a song from URL")
 async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
+    pass
+
+
+"""
     assert ctx.guild_id is not None
 
     guild = ctx.get_guild()
@@ -40,6 +42,7 @@ async def cmd_leave(ctx: tanjun.abc.Context) -> None:
     await ctx.respond(
         f"👋 **Successfully disconnected from `{ctx.client.cache.get_guild_channel(voice_state.channel_id).name}`**"
     )
+"""
 
 
 @tanjun.as_loader
