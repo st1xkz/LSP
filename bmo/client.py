@@ -3,14 +3,12 @@ import os
 import hikari
 import tanjun
 import uvloop
+from dotenv import load_dotenv
 
 from bmo.core import color_logs
 from bmo.errors import *
-from dotenv import load_dotenv
 
 load_dotenv()
-
-
 
 
 def build_bot() -> hikari.GatewayBot:
