@@ -21,7 +21,7 @@ async def custom_help(
     info = {}
     for component in ctx.client.components:
         cmds = ctx.client.iter_commands()
-        info[str(component)] = ", ".join([cmd.name for cmd in cmds])
+        info[str(component.name)] = ", ".join([cmd.name for cmd in cmds])
 
     if not obj:
         embed = hikari.Embed(
