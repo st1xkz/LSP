@@ -6,10 +6,13 @@ import uvloop
 
 from bmo.core import color_logs
 from bmo.errors import *
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def build_bot() -> hikari.GatewayBot:
-    TOKEN = os.environ["TOKEN"]
+    TOKEN = os.getenv("BOT_TOKEN")
     bot = hikari.GatewayBot(
         TOKEN,
         banner=None,
