@@ -10,7 +10,7 @@ from psutil import Process, virtual_memory
 
 from bmo.core import chron
 
-meta = tanjun.Component(name="meta")
+meta = tanjun.Component(name="Meta")
 
 
 @meta.with_slash_command

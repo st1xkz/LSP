@@ -4,7 +4,7 @@ import tanjun
 
 from bmo.core import chron
 
-help = tanjun.Component(name="help")
+help = tanjun.Component(name="Help")
 
 
 @help.with_slash_command

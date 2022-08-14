@@ -1,6 +1,6 @@
 import tanjun
 
-music = tanjun.Component(name="music")
+music = tanjun.Component(name="Music")
 
 
 @music.with_slash_command
