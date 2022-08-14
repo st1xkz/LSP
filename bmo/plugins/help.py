@@ -40,7 +40,7 @@ Find all the commands available on this panel.""",
             text=f"DJ BMO was created {cd}",
             icon=bot_user.avatar_url or bot_user.default_avatar_url,
         )
-        await ctx.respond(embed)
+        await ctx.respond(embed=embed)
 
 
 @tanjun.as_loader
