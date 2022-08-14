@@ -21,7 +21,7 @@ async def custom_help(
     info = {}
     for component in ctx.client.components:
         cmds = ctx.client.iter_commands()
-        info[str(component.name)] = ", ".join([cmd.name for cmd in cmds])
+        info[str(component)] = ", ".join([cmd.name for cmd in cmds])
 
     if not obj:
         embed = hikari.Embed(
@@ -29,7 +29,7 @@ async def custom_help(
 Find all the commands available on this panel.""",
             color=0x77F2F2,
         )
-        for component, cmds in info.items():
+        for component.name, cmds in info.items():
             embed.add_field(name=component, value=f"`{cmds}`", inline=False)
         embed.set_author(
             name="DJ BMO • Help",
