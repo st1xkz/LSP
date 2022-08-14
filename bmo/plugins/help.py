@@ -29,7 +29,7 @@ async def custom_help(
 Find all the commands available on this panel.""",
             color=0x77F2F2,
         )
-        for component.name, cmds in info.items():
+        for component.name, cmds.name  in info.items():
             embed.add_field(name=component, value=f"`{cmds}`", inline=False)
         embed.set_author(
             name="DJ BMO • Help",
