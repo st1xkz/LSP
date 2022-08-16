@@ -27,7 +27,7 @@ async def cmd_ping(
     await ctx.edit_last_response(
         f"Pong! 🏓 \n"
         f"Gateway: **{client.heartbeat_latency * 1000:,.0f}ms**\n"
-        f"REST: **{(end-start)*1000:,.0f}ms**"
+        f"REST: **{(end-start)*1000:,.0f}ms** sjdjsjdjsidj"
     )
 
 
