@@ -45,6 +45,7 @@ Find all the commands available on this panel.""",
         await ctx.respond(embed=embed)
 
 
+
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(help.copy())
