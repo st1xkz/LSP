@@ -20,6 +20,8 @@ async def custom_help(
 
     info = {}
     for component in ctx.client.components:
+        if component.name.lower() == "help":
+            continue
         cmds = ctx.client.iter_commands()
         info[component] = ", ".join([cmd.name for cmd in cmds])
 
