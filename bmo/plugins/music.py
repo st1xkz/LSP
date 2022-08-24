@@ -9,6 +9,7 @@ music = tanjun.Component(name="Music")
 async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
     pass
 
+
 """
     assert ctx.guild_id is not None
 
@@ -25,7 +26,6 @@ async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
     track_handle = await voice.play_source(await ytdl(url))
     track_handle.play()
 
-"""
 @music.with_slash_command
 @tanjun.as_slash_command("leave", "Leaves the connected voice channel")
 async def cmd_leave(ctx: tanjun.abc.Context) -> None:
