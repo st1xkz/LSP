@@ -1,6 +1,4 @@
 import tanjun
-from songbird import ytdl
-from songbird.hikari import Voicebox
 
 music = tanjun.Component(name="Music")
 
@@ -9,6 +7,9 @@ music = tanjun.Component(name="Music")
 @tanjun.with_str_slash_option("url", "the URL of the song")
 @tanjun.as_slash_command("play", "Plays a song from URL")
 async def cmd_play(ctx: tanjun.abc.Context, url: str) -> None:
+    pass
+
+"""
     assert ctx.guild_id is not None
 
     guild = ctx.get_guild()
