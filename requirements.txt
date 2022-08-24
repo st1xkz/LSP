@@ -3,3 +3,5 @@ hikari-tanjun
 uvloop
 psutil
 python-dotenv
+songbird-py==0.1.7
+FFmpeg
