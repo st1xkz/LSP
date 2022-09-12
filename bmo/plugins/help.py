@@ -45,6 +45,22 @@ Find all the commands available on this panel.""",
         await ctx.respond(embed=embed)
 
 
+"""
+    elif obj in ctx.client.iter_commands():
+        command = component.slash_commands(obj)
+        if isinstance(command, SlashCommandGroup):
+            await ctx.respond("This is group help")
+        else:
+            await ctx.respond("This is help command")
+
+    elif obj in ctx.client.components:
+        comp = ctx.client.components(obj)
+        await ctx.respond("This is component help")
+    else:
+        await ctx.respond("Invalid command or component")
+"""
+
+
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(help.copy())
