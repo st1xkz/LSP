@@ -94,6 +94,11 @@ def load(client: tanjun.abc.Client) -> None:
     client.add_component(meta.copy())
     (
         tanjun.InMemoryCooldownManager()
-        .set_bucket("Fun", tanjun.BucketResource.USER, 1, 5)
+        .set_bucket(
+            bucket_id="Fun",
+            resource=tanjun.BucketResource.USER,
+            limit=3,
+            reset_after=10,
+        )
         .add_to_client(client)
     )
