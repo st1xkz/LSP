@@ -14,6 +14,9 @@ meta = tanjun.Component(name="Meta")
 
 
 @meta.with_slash_command
+@tanjun.with_cooldown(
+    bucket_id="Fun", error_message="this is a cooldown message. please work ;-;"
+)
 @tanjun.as_slash_command("ping", "Shows bot's ping/latency")
 async def cmd_ping(
     ctx: tanjun.abc.Context, client: alluka.Injected[hikari.GatewayBot]
@@ -89,3 +92,8 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(meta.copy())
+    (
+        tanjun.InMemoryCooldownManager()
+        .set_bucket("Fun", tanjun.BucketResource.USER, 1, 5)
+        .add_to_client(client)
+    )
