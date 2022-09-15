@@ -15,7 +15,7 @@ meta = tanjun.Component(name="Meta")
 
 @meta.with_slash_command
 @tanjun.with_cooldown(
-    bucket_id="Fun", error_message="this is a cooldown message. please work ;-;"
+    "Fun", error_message="this is a cooldown message. please work ;-;"
 )
 @tanjun.as_slash_command("ping", "Shows bot's ping/latency")
 async def cmd_ping(
