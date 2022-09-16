@@ -16,7 +16,7 @@ meta = tanjun.Component(name="Meta")
 @meta.with_slash_command
 @tanjun.with_cooldown(
     "meta",
-    error_message=f"{meta.client.author.mention} Looks like you've been doing that a lot. Take a break for **{bucket_id}** before trying again. <:blobpainpats:993961964369875016>",
+    error_message=f"Looks like you've been doing that a lot. Take a break for **{bucket_id}** before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
 @tanjun.as_slash_command("ping", "Shows bot's ping/latency")
@@ -39,7 +39,7 @@ async def cmd_ping(
 @meta.with_slash_command
 @tanjun.with_cooldown(
     "meta",
-    error_message=f"{meta.client.author.mention} Looks like you've been doing that a lot. Take a break for **{bucket_id}** before trying again. <:blobpainpats:993961964369875016>",
+    error_message=f"Looks like you've been doing that a lot. Take a break for **{bucket_id}** before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
 @tanjun.as_slash_command("botinfo", "Displays info about the bot")
