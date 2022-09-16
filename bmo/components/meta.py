@@ -15,7 +15,9 @@ meta = tanjun.Component(name="Meta")
 
 @meta.with_slash_command
 @tanjun.with_cooldown(
-    "Fun", error_message="this is a cooldown message. please work ;-;"
+    "Fun",
+    error_message="this is a cooldown message. please work ;-;",
+    owners_exempt=False,
 )
 @tanjun.as_slash_command("ping", "Shows bot's ping/latency")
 async def cmd_ping(
@@ -95,10 +97,10 @@ def load(client: tanjun.abc.Client) -> None:
     (
         tanjun.InMemoryCooldownManager()
         .set_bucket(
-            bucket_id="Fun",
-            resource=tanjun.BucketResource.USER,
-            limit=3,
-            reset_after=10,
+            "Fun",
+            tanjun.BucketResource.USER,
+            3,
+            10,
         )
         .add_to_client(client)
     )
