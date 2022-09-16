@@ -15,8 +15,8 @@ meta = tanjun.Component(name="Meta")
 
 @meta.with_slash_command
 @tanjun.with_cooldown(
-    "Fun",
-    error_message="this is a cooldown message. please work ;-;",
+    "meta",
+    error_message=f"{ctx.author} Looks like you've been doing that a lot. Take a break for **{bucket_id}** before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
 @tanjun.as_slash_command("ping", "Shows bot's ping/latency")
@@ -37,6 +37,11 @@ async def cmd_ping(
 
 
 @meta.with_slash_command
+@tanjun.with_cooldown(
+    "meta",
+    error_message=f"{ctx.author} Looks like you've been doing that a lot. Take a break for **{bucket_id}** before trying again. <:blobpainpats:993961964369875016>",
+    owners_exempt=False,
+)
 @tanjun.as_slash_command("botinfo", "Displays info about the bot")
 async def cmd_bot(
     ctx: tanjun.abc.Context,
@@ -97,7 +102,7 @@ def load(client: tanjun.abc.Client) -> None:
     (
         tanjun.InMemoryCooldownManager()
         .set_bucket(
-            "Fun",
+            "meta",
             tanjun.BucketResource.USER,
             3,
             10,
