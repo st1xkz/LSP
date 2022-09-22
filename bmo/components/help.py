@@ -45,8 +45,8 @@ Find all the commands available on this panel.""",
         await ctx.respond(embed=embed)
 
     elif obj in ctx.client.iter_commands():
-        command = component.slash_commands()
-        if isinstance(command, SlashCommandGroup):
+        cmds = component.slash_commands
+        if isinstance(cmds, SlashCommandGroup):
             await ctx.respond("This is group help")
         else:
             await ctx.respond("This is help command")
