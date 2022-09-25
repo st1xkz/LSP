@@ -93,7 +93,7 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
             )
             .set_footer(text=f"Bot developed by sticks#5822")
         )
-        await ctx.respond(embed)
+        await ctx.respond(embed=embed)
 
 
 @tanjun.as_loader
