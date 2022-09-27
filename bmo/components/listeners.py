@@ -9,7 +9,9 @@ listener = tanjun.Component(name="Listeners")
 async def cmd_foo(ctx: tanjun.abc.Context) -> None:
     embed = hikari.Embed(
         title="Beep Boop!",
-        description="Thank you for inviting me! Type `/` to see what I can do!",
+        description="""Thank you for inviting me! Type `/` to see what I can do!
+
+All configuration is done through `/settings`. If you need any help or support, feel free to contact the [**developer**](https://discord.com/users/690631795473121280).""",
         color=0x3E77EE,
     )
     await ctx.respond(embed=embed)
