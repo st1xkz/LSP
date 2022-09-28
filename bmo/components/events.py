@@ -2,9 +2,15 @@ import alluka
 import hikari
 import tanjun
 
-listener = tanjun.Component(name="Listeners")
+component = tanjun.Component()
 
 # turn this into an event. make into `on_guild_join`
+"""
+@component.with_listener(hikari.GuildJoinEvent)
+async def on_guild_join(event: hikari.GuildJoinEvent, ctx: tanjun.abc.Context, bot: alluka.Injected[hikari.GatewayBot]):
+"""
+
+
 @listener.with_slash_command
 @tanjun.as_slash_command("foo", "Bar")
 async def cmd_foo(
