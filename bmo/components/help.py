@@ -20,7 +20,7 @@ async def custom_help(
 
     info = {}
     for component in ctx.client.components:
-        if component.name.lower() == "help":
+        if component.name.lower() == "help" and "events":
             continue
         cmds = component.slash_commands
         info[component] = ", ".join([f"`{cmd.name}`" for cmd in cmds])
