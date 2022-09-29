@@ -1,5 +1,5 @@
 hikari
-hikari-tanjun==2.6.2a1
+hikari-tanjun==1.0.1a5
 uvloop
 psutil
 python-dotenv
