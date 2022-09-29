@@ -1,4 +1,4 @@
-hikari==2.0.0.dev100
+hikari==2.0.0.dev110
 hikari-tanjun==1.0.1a5
 uvloop
 psutil
