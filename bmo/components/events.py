@@ -1,7 +1,7 @@
 import hikari
 import tanjun
 
-component = tanjun.Component()
+component = tanjun.Component(name="Component")
 
 
 @component.with_listener(hikari.GuildJoinEvent)
