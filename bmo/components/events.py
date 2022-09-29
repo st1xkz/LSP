@@ -1,6 +1,8 @@
 import hikari
 import tanjun
 
+from .tb_errors import CacheFailureError
+
 component = tanjun.Component(name="Component")
 
 
