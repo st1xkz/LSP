@@ -4,13 +4,65 @@ import tanjun
 component = tanjun.Component(name="Component")
 
 
+def calculate_permissions(
+    member: hikari.Member, channel: t.Optional[hikari.GuildChannel] = None
+) -> hikari.Permissions:
+    guild = member.get_guild()
+    if not guild:
+        raise CacheFailureError("Guild could not be resolved from cache.")
+
+    if guild.owner_id == member.id:
+        return hikari.Permissions.all_permissions()
+
+    guild_roles = guild.get_roles()
+    member_roles = list(filter(lambda r: r.id in member.role_ids, guild_roles.values()))
+    permissions: hikari.Permissions = guild_roles[
+        guild.id
+    ].permissions  # Start with @everyone perms
+
+    for role in member_roles:
+        permissions |= role.permissions
+
+    if permissions & hikari.Permissions.ADMINISTRATOR:
+        return hikari.Permissions.all_permissions()
+
+    if not channel:  # End of role-based permissions
+        return permissions
+
+    overwrite_everyone = channel.permission_overwrites.get(channel.guild_id)
+    assert overwrite_everyone is not None
+    permissions &= ~overwrite_everyone.deny
+    permissions |= overwrite_everyone.allow
+
+    overwrites = hikari.PermissionOverwrite(  # Collect role overwrites here
+        id=hikari.Snowflake(69),
+        type=hikari.PermissionOverwriteType.ROLE,
+        allow=hikari.Permissions.NONE,
+        deny=hikari.Permissions.NONE,
+    )
+
+    for role in member_roles:
+        if overwrite := channel.permission_overwrites.get(role.id):
+            overwrites.deny |= overwrite.deny
+            overwrites.allow |= overwrite.allow
+
+    permissions &= ~overwrites.deny
+    permissions |= overwrites.allow
+
+    if overwrite_member := channel.permission_overwrites.get(member.id):
+        permissions &= ~overwrite_member.deny
+        permissions |= overwrite_member.allow
+
+    return permissions
+
+
 @component.with_listener(hikari.GuildJoinEvent)
 async def on_guild_join(event: hikari.GuildJoinEvent):
     guild = event.get_guild()
     bot_user = event.app.get_me()
 
     for _, ch in guild.get_channels().items():
-        if toolbox.calculate_permissions(member, ch) & hikari.Permissions.SEND_MESSAGES:
+        if calculate_permissions(member, ch) & hikari.Permissions.SEND_MESSAGES:
             await event.client.rest.create_message(
                 ch,
                 embed=hikari.Embed(
