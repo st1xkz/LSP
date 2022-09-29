@@ -7,6 +7,7 @@ component = tanjun.Component(name="Component")
 @component.with_listener(hikari.GuildJoinEvent)
 async def on_guild_join(event: hikari.GuildJoinEvent):
     guild = event.get_guild()
+    bot_user = event.app.get_me()
 
     for _, ch in guild.get_channels().items():
         if toolbox.calculate_permissions(member, ch) & hikari.Permissions.SEND_MESSAGES:
@@ -18,7 +19,7 @@ async def on_guild_join(event: hikari.GuildJoinEvent):
                     
 All configuration is done through `/settings`. If you need any help or support, feel free to contact the [**developer**](https://discord.com/users/690631795473121280).""",
                     color=0x3E77EE,
-                )
+                ).set_thumbnail(bot_user.avatar_url or bot_user.default_avatar_url),
             )
         break
 
