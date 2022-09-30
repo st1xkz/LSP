@@ -5,9 +5,10 @@ import typing as t
 import hikari
 import tanjun
 
-from .tb_errors import CacheFailureError
+from bmo.core.tb_errors import CacheFailureError
 
 component = tanjun.Component(name="Component")
+
 
 
 def calculate_permissions(
