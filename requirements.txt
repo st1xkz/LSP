@@ -2,3 +2,4 @@ hikari-tanjun
 uvloop
 psutil
 python-dotenv
+hikari-toolbox
