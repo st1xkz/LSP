@@ -11,8 +11,8 @@ async def on_guild_join(event: hikari.GuildJoinEvent):
     bot_user = event.app.get_me()
 
     for _, ch in guild.get_channels().items():
-        if toolbox.calculate_permissions(member, ch) & hikari.Permissions.SEND_MESSAGES:
-            await event.client.rest.create_message(
+        if toolbox.calculate_permissions(bot_user, ch) & hikari.Permissions.SEND_MESSAGES:
+            await event.app.rest.create_message(
                 ch,
                 embed=hikari.Embed(
                     title="Beep Boop!",
