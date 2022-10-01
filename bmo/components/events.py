@@ -8,7 +8,7 @@ component = tanjun.Component(name="Component")
 @component.with_listener(hikari.GuildJoinEvent)
 async def on_guild_join(event: hikari.GuildJoinEvent):
     member = event.get_guild().get_my_member()
-    ch = event.get_guild().get_system_channel()
+    ch = event.get_guild().get_channel(event.get_guild().system_channel_id)
 
     if toolbox.calculate_permissions(member, ch) & hikari.Permissions.SEND_MESSAGES:
         await event.app.rest.create_message(
