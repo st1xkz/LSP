@@ -2,7 +2,7 @@ import hikari
 import tanjun
 import toolbox
 
-component = tanjun.Component(name="Component")
+events = tanjun.Component()
 
 
 @component.with_listener(hikari.GuildJoinEvent)
@@ -25,4 +25,4 @@ All configuration is done through `/settings`. If you need any help or support, 
 
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
-    client.add_component(component.copy())
+    client.add_component(events.copy())

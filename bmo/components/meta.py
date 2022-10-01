@@ -10,7 +10,7 @@ from psutil import Process, virtual_memory
 
 from bmo.core import chron
 
-meta = tanjun.Component(name="Meta")
+meta = tanjun.Component()
 
 
 @meta.with_slash_command
@@ -109,7 +109,7 @@ async def cmd_help(ctx: tanjun.abc.Context) -> None:
         description="""To get started, type `/` to reveal all commands! If you have "Manage Server" permissions and want to modify the bot's various settings, enable/disable features, or otherwise customize them, you may do so via `/settings`.
     
     If you need any assistance in configuring the bot, do not hesitate in contacting the [**developer**](https://discord.com/users/690631795473121280)!""",
-        color=0x77F2F2
+        color=0x77F2F2,
     )
     await ctx.respond(embed=embed)
 
