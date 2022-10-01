@@ -10,6 +10,8 @@ settings = tanjun.Component()
 async def cmd_ping(ctx: tanjun.abc.Context, obj: str) -> None:
     if not obj:
         await ctx.respond("this will be an embed later")
+    else:
+        await ctx.respond("make sure this works properly")
 
 
 @tanjun.as_loader
