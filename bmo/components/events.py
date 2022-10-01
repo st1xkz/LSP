@@ -9,20 +9,19 @@ component = tanjun.Component(name="Component")
 async def on_guild_join(event: hikari.GuildJoinEvent):
     guild = event.get_guild()
     member = event.guild.get_my_member()
+    ch = guild.get_system_channel()
 
-    for _, ch in guild.get_channels(guild.fetch_system_channel):
-        if toolbox.calculate_permissions(member, ch) & hikari.Permissions.SEND_MESSAGES:
-            await event.app.rest.create_message(
-                ch,
-                embed=hikari.Embed(
-                    title="Beep Boop!",
-                    description="""Thank you for inviting me! Type `/` to see what I can do!
-                    
+    if toolbox.calculate_permissions(member, ch) & hikari.Permissions.SEND_MESSAGES:
+        await event.app.rest.create_message(
+            ch,
+            embed=hikari.Embed(
+                title="Beep Boop!",
+                description="""Thank you for inviting me! Type `/` to see what I can do!
+                
 All configuration is done through `/settings`. If you need any help or support, feel free to contact the [**developer**](https://discord.com/users/690631795473121280).""",
-                    color=0x3E77EE,
-                ).set_thumbnail(member.avatar_url or member.default_avatar_url),
-            )
-        break
+                color=0x3E77EE,
+            ).set_thumbnail(member.avatar_url or member.default_avatar_url),
+        )
 
 
 @tanjun.as_loader
