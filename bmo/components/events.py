@@ -5,7 +5,7 @@ import toolbox
 events = tanjun.Component()
 
 
-@component.with_listener(hikari.GuildJoinEvent)
+@events.with_listener(hikari.GuildJoinEvent)
 async def on_guild_join(event: hikari.GuildJoinEvent):
     member = event.get_guild().get_my_member()
     ch = event.get_guild().get_channel(event.get_guild().system_channel_id)
