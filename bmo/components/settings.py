@@ -11,7 +11,7 @@ async def cmd_ping(ctx: tanjun.abc.Context, obj: str) -> None:
     if not obj:
         embed = hikari.Embed(
             title="DJ BMO ~ Settings",
-            description="To view more info about an option, use `/settings <obj>`.",
+            description="To view more info about a feature, use `/settings <obj>`.",
         )
         await ctx.respond(embed=embed)
     else:
