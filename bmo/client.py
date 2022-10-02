@@ -41,6 +41,11 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
 component = tanjun.Component()
 
 
+@component.with_listener()
+async def on_started(event: hikari.StartedEvent):
+    update_presence.start()
+
+
 @component.with_schedule
 @tanjun.as_interval(60)
 async def update_presence() -> None:
