@@ -1,4 +1,3 @@
-import asyncio
 import os
 
 import hikari
@@ -36,32 +35,6 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
 
     return client
-
-
-component = tanjun.Component()
-
-
-@component.with_listener()
-async def on_started(event: hikari.StartedEvent):
-    update_presence.start()
-
-
-@component.with_schedule
-@tanjun.as_interval(60)
-async def update_presence() -> None:
-    await build_bot.update_presence(
-        activity=hikari.Activity(
-            name="I think I am dying. But that's okay, BMO always bounces back!",
-            type=hikari.ActivityType.PLAYING,
-        )
-    )
-    await asyncio.sleep(60)
-    await build_bot.update_presence(
-        activity=hikari.Activity(
-            name=f"{len(component.cache.get_available_guilds_view())} guilds & {len(component.cache.get_users_view())} users!",
-            type=hikari.ActivityType.WATCHING,
-        )
-    )
 
 
 if os.name != "nt":
