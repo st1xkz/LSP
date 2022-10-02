@@ -9,7 +9,11 @@ settings = tanjun.Component()
 @tanjun.as_slash_command("settings", "Configure different settings of the bot")
 async def cmd_ping(ctx: tanjun.abc.Context, obj: str) -> None:
     if not obj:
-        await ctx.respond("this will be an embed later")
+        embed = hikari.Embed(
+            title="DJ BMO Settings",
+            description="To view more info about an option, use `/settings <obj>`.",
+        )
+        await ctx.respond(embed=embed)
     else:
         await ctx.respond("make sure this works properly")
 
