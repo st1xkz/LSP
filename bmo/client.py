@@ -42,7 +42,7 @@ component = tanjun.Component()
 
 
 @component.with_schedule
-@tanjun.as_interval(300)
+@tanjun.as_interval(60)
 async def update_presence() -> None:
     await build_bot.update_presence(
         activity=hikari.Activity(
@@ -50,7 +50,7 @@ async def update_presence() -> None:
             type=hikari.ActivityType.PLAYING,
         )
     )
-    await asyncio.sleep(300)
+    await asyncio.sleep(60)
     await build_bot.update_presence(
         activity=hikari.Activity(
             name=f"{len(component.cache.get_available_guilds_view())} guilds & {len(component.cache.get_users_view())} users!",
