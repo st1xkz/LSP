@@ -6,7 +6,7 @@ if __name__ == "__main__":
     build_bot().run(
         status=hikari.Status.ONLINE,
         activity=hikari.Activity(
-            name=f"{len(component.cache.get_available_guilds_view())} guilds & {len(component.cache.get_users_view())} users!",
+            name=f"{len(build_bot.cache.get_available_guilds_view())} guilds & {len(build_bot.cache.get_users_view())} users!",
             type=hikari.ActivityType.WATCHING,
         ),
     )
