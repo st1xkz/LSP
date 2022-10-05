@@ -37,5 +37,14 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     return client
 
 
+component = tanjun.Component()
+
+
+@component.with_schedule
+@tanjun.as_interval(60)
+async def my_schedule():
+    print("I am running every minute!")
+
+
 if os.name != "nt":
     uvloop.install()
