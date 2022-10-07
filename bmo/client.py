@@ -18,19 +18,16 @@ class EventHandler:
     async def track_start(
         self, _: lavasnek_rs.Lavalink, event: lavasnek_rs.TrackStart
     ) -> None:
-        """Handles track start events."""
         print(f"Track started on guild: {event.guild_id}")
 
     async def track_finish(
         self, _: lavasnek_rs.Lavalink, event: lavasnek_rs.TrackFinish
     ) -> None:
-        """Handles track finish events."""
         print(f"Track finished on guild: {event.guild_id}")
 
     async def track_exception(
         self, lavalink: lavasnek_rs.Lavalink, event: lavasnek_rs.TrackException
     ) -> None:
-        """Handles track exception events."""
         print(f"Track exception event happened on guild: {event.guild_id}")
 
         # If a track was unable to be played, skip it
@@ -76,8 +73,9 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
         """Event that triggers when the hikari gateway is ready."""
         builder = (
             lavasnek_rs.LavalinkBuilder(event.my_user.id, TOKEN)
-            .set_host("127.0.0.1")
-            .set_password(os.environ["LAVALINK_PASSWORD"])
+            .set_host(os.environ["LAVALINK_HOST"])
+            .set_password(os.environ["LAVALINK_PWD"])
+            .set_port(int(os.environ["LAVALINK_PORT"]))
             .set_start_gateway(False)
             # We set start gateway False because hikari can handle
             # voice events for us.
