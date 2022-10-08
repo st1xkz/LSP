@@ -63,8 +63,6 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     client.load_modules("bmo.components.settings")
     client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
 
-    return client
-
     @client.with_listener(hikari.ShardReadyEvent)
     async def on_shard_ready(
         event: hikari.ShardReadyEvent,
