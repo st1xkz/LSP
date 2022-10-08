@@ -110,6 +110,8 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
                 event.token,
             )
 
+    return client
+
 
 if os.name != "nt":
     uvloop.install()
