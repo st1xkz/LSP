@@ -57,6 +57,7 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
         bot,
         declare_global_commands=True,
     )
+    client.add_check(lambda ctx: ctx.guild_id is not None)
     client.load_modules("bmo.components.events")
     client.load_modules("bmo.components.meta")
     client.load_modules("bmo.components.music")
