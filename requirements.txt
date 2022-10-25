@@ -3,4 +3,3 @@ uvloop
 psutil
 python-dotenv
 hikari-toolbox
-lavasnek_rs
