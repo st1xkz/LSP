@@ -11,7 +11,6 @@ from bmo.errors import *
 load_dotenv()
 
 
-
 def build_bot() -> hikari.GatewayBot:
     TOKEN = os.getenv("TOKEN")
     bot = hikari.GatewayBot(
