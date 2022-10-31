@@ -5,8 +5,8 @@ import tanjun
 import uvloop
 from dotenv import load_dotenv
 
-from lps.core import color_logs
-from lps.errors import *
+from lsp.core import color_logs
+from lsp.errors import *
 
 load_dotenv()
 

@@ -2,7 +2,7 @@ import datetime as dt
 import time
 from typing import Optional
 
-from lps.core import string
+from lsp.core import string
 
 
 def sys_time() -> str:
