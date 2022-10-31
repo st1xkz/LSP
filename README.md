@@ -14,6 +14,7 @@
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://pypi.org/project/black)
 [![License](https://img.shields.io/github/license/st1xkz/DJ-BMO)](https://github.com/st1xkz/DJ-BMO/blob/main/LICENSE)
 
-A characterized Discord bot made with [hikari](https://github.com/hikari-py/hikari), [hikari-tanjun](https://github.com/FasterSpeeding/Tanjun). [ still in development ]
+A simple, single-server Discord starboard bot. [ still in development ]
 
-</div>
+- Created on July 12, 2022
+- Written in Python using [`hikari`](https://github.com/hikari-py/hikari) and [`hikari-tanjun`](https://github.com/FasterSpeeding/Tanjun)
