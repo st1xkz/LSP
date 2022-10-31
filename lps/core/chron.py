@@ -2,7 +2,7 @@ import datetime as dt
 import time
 from typing import Optional
 
-from bmo.core import string
+from lps.core import string
 
 
 def sys_time() -> str:

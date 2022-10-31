@@ -5,8 +5,8 @@ import tanjun
 import uvloop
 from dotenv import load_dotenv
 
-from bmo.core import color_logs
-from bmo.errors import *
+from lps.core import color_logs
+from lps.errors import *
 
 load_dotenv()
 
@@ -29,8 +29,8 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
         bot,
         declare_global_commands=True,
     )
-    client.load_modules("bmo.components.events")
-    client.load_modules("bmo.components.meta")
+    client.load_modules("lps.components.events")
+    client.load_modules("lps.components.meta")
     client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
 
     return client
