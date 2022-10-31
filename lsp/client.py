@@ -29,8 +29,8 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
         bot,
         declare_global_commands=True,
     )
-    client.load_modules("lps.components.events")
-    client.load_modules("lps.components.meta")
+    client.load_modules("lsp.components.events")
+    client.load_modules("lsp.components.meta")
     client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
 
     return client
