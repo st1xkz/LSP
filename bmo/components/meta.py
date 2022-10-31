@@ -42,7 +42,7 @@ async def cmd_ping(
     error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
-@tanjun.as_slash_command("botinfo", "Displays info about the bot")
+@tanjun.as_slash_command("bot-info", "Displays info about the bot")
 async def cmd_bot(
     ctx: tanjun.abc.Context,
     bot: alluka.Injected[hikari.GatewayBot],
@@ -96,22 +96,20 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
         await ctx.respond(embed=embed)
 
 
-@meta.with_slash_command()
+@meta.with_slash_command
 @tanjun.with_cooldown(
     "meta",
     error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
-@tanjun.as_slash_command("help", "Get help regarding the bot's functionality")
-async def cmd_help(ctx: tanjun.abc.Context) -> None:
-    embed = hikari.Embed(
-        title="DJ BMO ~ Help",
-        description="""To get started, type `/` to reveal all commands! If you have "Manage Server" permissions and want to modify the bot's various settings, enable/disable features, or otherwise customize them, you may do so via `/settings`.
-    
-If you need any assistance in configuring the bot, do not hesitate in contacting the [**developer**](https://discord.com/users/690631795473121280)!""",
-        color=0x77F2F2,
-    )
-    await ctx.respond(embed=embed)
+@tanjun.with_member_slash_option(
+    "command", "the command to get the source for", default=False
+)
+@tanjun.as_slash_command(
+    "source", "Displays link to the bot's GitHub or to a specific command"
+)
+async def cmd_source(ctx: tanjun.abc.Context) -> None:
+    ...
 
 
 @tanjun.as_loader
