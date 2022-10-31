@@ -72,7 +72,7 @@ async def cmd_bot(
 
         embed = (
             hikari.Embed(
-                title="Statistics for DJ BMO",
+                title="Statistics for Lumpy Space Princess",
                 description=f"""Guild Count: **{len(ctx.cache.get_available_guilds_view())}**
 User Count: **{len(ctx.cache.get_users_view())}**
 Command Count: **{sum(1 for _ in client.iter_slash_commands())}**
