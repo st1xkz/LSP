@@ -102,9 +102,6 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
-@tanjun.with_member_slash_option(
-    "command", "the command to get the source for", default=False
-)
 @tanjun.as_slash_command(
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
