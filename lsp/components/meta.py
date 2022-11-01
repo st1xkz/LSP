@@ -114,7 +114,7 @@ async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
     command = [
         command
         for command in ctx.client.iter_slash_commands()
-        if command.name == f"{command}"
+        if command.name == f"{command.name}"
     ][0]
     source_url = "<https://github.com/st1xkz/LSP>"
     branch = "main"
