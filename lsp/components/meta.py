@@ -105,7 +105,7 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     owners_exempt=False,
 )
 @tanjun.with_str_slash_option(
-    "command", "the command to get the source for", default=False
+    "cmd", "the command to get the source for", default=False
 )
 @tanjun.as_slash_command(
     "source", "Displays link to the bot's GitHub or to a specific command"
@@ -114,22 +114,22 @@ async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
     command = [
         command
         for command in ctx.client.iter_slash_commands()
-        if command.name == f"{command.name}"
+        if command.name == f"{cmd}"
     ][0]
     source_url = "<https://github.com/st1xkz/LSP>"
     branch = "main"
 
     with open("./LICENSE") as f:
         license_ = f.readline().strip()
-        if not command:
+        if not cmd:
             await ctx.respond(f"{source_url}")
             return
         else:
-            obj = ctx.client.iter_slash_commands(command.replace(".", " "))
-            
+            obj = ctx.client.iter_slash_commands(cmd.replace(".", " "))
+
             if obj is None:
                 return await ctx.respond(
-                    f"Could not find command called `{command.name}`."
+                    f"Could not find command called `{cmd.name}`."
                 )
 
             src = obj.callback.__code__
@@ -140,7 +140,7 @@ async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
         if not module.startswith("discord"):
             if filename is None:
                 return await ctx.respond(
-                    f"Could not find source for command `{command.name}`."
+                    f"Could not find source for command `{cmd.name}`."
                 )
 
             location = os.path.relpath(filename).replace("\\", "/")
