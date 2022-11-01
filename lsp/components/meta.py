@@ -85,7 +85,7 @@ Language: **Python**
 Python Version: **v{platform.python_version()}**
 Library: **hikari-py v{hikari.__version__}**
 Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
-                color=0x3E77EE,
+                color=0xB87FDE,
                 timestamp=datetime.now().astimezone(),
             )
             .set_thumbnail(
