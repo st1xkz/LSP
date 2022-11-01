@@ -113,7 +113,7 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
     command = [
         command
-        for command in client.iter_slash_commands()
+        for command in ctx.client.iter_slash_commands()
         if command.name == f"{command}"
     ][0]
     source_url = "<https://github.com/st1xkz/LSP>"
@@ -125,7 +125,7 @@ async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
             await ctx.respond(f"{source_url}")
             return
         else:
-            obj = client.iter_slash_commands(command.name.replace(".", " "))
+            obj = ctx.client.iter_slash_commands(command.name.replace(".", " "))
             if obj is None:
                 return await ctx.respond(
                     f"Could not find command called `{command.name}`."
