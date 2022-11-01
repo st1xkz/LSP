@@ -110,11 +110,11 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 @tanjun.as_slash_command(
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
-async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
-    command = [
-        command
+async def cmd_source(ctx: tanjun.abc.Context, cmd: str) -> None:
+    cmd = [
+        cmd
         for command in ctx.client.iter_slash_commands()
-        if command.name == f"{cmd}"
+        if cmd.name == f"{cmd}"
     ][0]
     source_url = "<https://github.com/st1xkz/LSP>"
     branch = "main"
