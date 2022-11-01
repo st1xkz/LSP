@@ -126,6 +126,7 @@ async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
             return
         else:
             obj = ctx.client.iter_slash_commands(command.replace(".", " "))
+            
             if obj is None:
                 return await ctx.respond(
                     f"Could not find command called `{command.name}`."
