@@ -111,7 +111,11 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
 async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
-    command = ctx.client.get_slash_command(command)
+    command = [
+        command
+        for command in client.iter_slash_commands()
+        if command.name == f"{command}"
+    ][0]
     source_url = "<https://github.com/st1xkz/LSP>"
     branch = "main"
 
@@ -121,7 +125,7 @@ async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
             await ctx.respond(f"{source_url}")
             return
         else:
-            obj = ctx.client.get_slash_command(command.replace(".", " "))
+            obj = client.iter_slash_commands(command.name.replace(".", " "))
             if obj is None:
                 return await ctx.respond(
                     f"Could not find command called `{command.name}`."
