@@ -1,4 +1,6 @@
 import datetime as dt
+import inspect
+import os
 import platform
 import time
 from datetime import datetime, timedelta
@@ -102,11 +104,47 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
+@tanjun.with_str_slash_option(
+    "command", "the command to get the source for", default=False
+)
 @tanjun.as_slash_command(
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
-async def cmd_source(ctx: tanjun.abc.Context) -> None:
-    ...
+async def cmd_source(ctx: tanjun.abc.Context, command: str) -> None:
+    command = ctx.client.get_slash_command(command)
+    source_url = "<https://github.com/st1xkz/LSP>"
+    branch = "main"
+
+    with open("./LICENSE") as f:
+        license_ = f.readline().strip()
+        if not command:
+            await ctx.respond(f"{source_url}")
+            return
+        else:
+            obj = ctx.client.get_slash_command(command.replace(".", " "))
+            if obj is None:
+                return await ctx.respond(
+                    f"Could not find command called `{command.name}`."
+                )
+
+            src = obj.callback.__code__
+            module = obj.callback.__module__
+            filename = src.co_filename
+
+        lines, firstlineno = inspect.getsourcelines(src)
+        if not module.startswith("discord"):
+            if filename is None:
+                return await ctx.respond(
+                    f"Could not find source for command `{command.name}`."
+                )
+
+            location = os.path.relpath(filename).replace("\\", "/")
+        else:
+            location = module.replace(".", "/") + ".py"
+
+        await ctx.respond(
+            f"<{source_url}/blob/{branch}/{location}#L{firstlineno}-L{firstlineno + len(lines) - 1}>"
+        )
 
 
 @tanjun.as_loader
