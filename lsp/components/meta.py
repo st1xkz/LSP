@@ -104,29 +104,25 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
-@tanjun.with_str_slash_option("cmd", "the command to get the source for", default=False)
+@tanjun.with_str_slash_option("cmd", "the command to get the source for")
 @tanjun.as_slash_command(
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
 async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
-    print(cmd)
-    print(ctx.client.iter_slash_commands())
-    print(list(ctx.client.iter_slash_commands()))
-    print(list(c.name for c in ctx.client.iter_slash_commands()))
-    cmd = [cmd for cmd in ctx.client.iter_slash_commands() if cmd.name == cmd][0]
+    _cmd = [cmd for cmd in ctx.client.iter_slash_commands() if cmd.name == cmd][0]
     source_url = "https://github.com/st1xkz/LSP"
     branch = "main"
 
     with open("./LICENSE") as f:
         license_ = f.readline().strip()
-        if not cmd:
+        if not _cmd:
             await ctx.respond(f"<{source_url}>")
             return
         else:
             obj = ctx.client.iter_slash_commands(cmd.replace(".", " "))
 
             if obj is None:
-                return await ctx.respond(f"Could not find command called `{cmd.name}`.")
+                return await ctx.respond(f"Could not find command called `{_cmd.name}`.")
 
             src = obj.callback.__code__
             module = obj.callback.__module__
@@ -136,7 +132,7 @@ async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
         if not module.startswith("discord"):
             if filename is None:
                 return await ctx.respond(
-                    f"Could not find source for command `{cmd.name}`."
+                    f"Could not find source for command `{_cmd.name}`."
                 )
 
             location = os.path.relpath(filename).replace("\\", "/")
