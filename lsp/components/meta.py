@@ -111,7 +111,8 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
 async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
-    print(ctx.client.iter_slash_commands)
+    print(ctx.client.iter_slash_commands())
+    print({list(ctx.client.iter_slash_commands())})
     cmd = [
         cmd
         for cmd in ctx.client.iter_slash_commands()
