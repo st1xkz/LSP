@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import alluka
 import hikari
 import tanjun
-from psutil import Process, virtual_memory
+from psutil import Process, virtual_memory  # type: ignore
 
 from lsp.core import chron
 
@@ -70,8 +70,8 @@ async def stats(
         mem_total = virtual_memory().total / (1024**2)
         mem_of_total = proc.memory_percent()
         mem_usage = mem_total * (mem_of_total / 100)
-        bot_user = bot.get_me()
-
+        assert (bot_user := bot.get_me())
+        assert ctx.cache
         embed = (
             hikari.Embed(
                 title="Statistics for Lumpy Space Princess",
@@ -104,12 +104,12 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
-@tanjun.with_str_slash_option("cmd", "the command to get the source for")
+@tanjun.with_str_slash_option("cmd", "the command to get the source for", default=None)
 @tanjun.as_slash_command(
-    "source", "Displays link to the bot's GitHub or to a specific command"
+    "source",
+    "Displays link to the bot's GitHub or to a specific command",
 )
 async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
-    print(cmd)
     source_url = "https://github.com/st1xkz/LSP"
     branch = "main"
 
@@ -117,22 +117,26 @@ async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
         await ctx.respond(f"<{source_url}>")
         return
     else:
-        _cmd = [cmd for cmd in ctx.client.iter_slash_commands() if cmd.name == cmd][0]
-        obj = ctx.client.iter_slash_commands(cmd.replace(".", " "))
+        try:
+            _cmd: tanjun.abc.BaseSlashCommand | None = None
+            for command in ctx.client.iter_slash_commands():
+                if command.name == cmd:
+                    _cmd = command
+                    break
+            assert _cmd is not None and isinstance(_cmd, tanjun.SlashCommand)
+        except AssertionError:
+            await ctx.respond(f"Could not find command called `{cmd}`.")
+            return None
 
-        if obj is None:
-            return await ctx.respond(f"Could not find command called `{_cmd.name}`.")
-
-        src = obj.callback.__code__
-        module = obj.callback.__module__
+        src = _cmd.callback.__code__
+        module = _cmd.callback.__module__
         filename = src.co_filename
 
     lines, firstlineno = inspect.getsourcelines(src)
     if not module.startswith("discord"):
         if filename is None:
-            return await ctx.respond(
-                f"Could not find source for command `{_cmd.name}`."
-            )
+            await ctx.respond(f"Could not find source for command `{_cmd.name}`.")
+            return
 
         location = os.path.relpath(filename).replace("\\", "/")
     else:
@@ -147,7 +151,7 @@ async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(meta.copy())
     (
-        tanjun.InMemoryCooldownManager()
+        tanjun.InMemoryCooldownManager()  # type: ignore
         .set_bucket(
             "meta",
             tanjun.BucketResource.USER,
