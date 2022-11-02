@@ -109,39 +109,37 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
 async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
-    _cmd = [cmd for cmd in ctx.client.iter_slash_commands() if cmd.name == cmd][0]
     source_url = "https://github.com/st1xkz/LSP"
     branch = "main"
 
-    with open("./LICENSE") as f:
-        license_ = f.readline().strip()
-        if not _cmd:
-            await ctx.respond(f"<{source_url}>")
-            return
-        else:
-            obj = ctx.client.iter_slash_commands(cmd.replace(".", " "))
+    if _cmd is None:
+        await ctx.respond(f"<{source_url}>")
+        return
+    else:
+        _cmd = [cmd for cmd in ctx.client.iter_slash_commands() if cmd.name == cmd][0]
+        obj = ctx.client.iter_slash_commands(cmd.replace(".", " "))
 
-            if obj is None:
-                return await ctx.respond(f"Could not find command called `{_cmd.name}`.")
+        if obj is None:
+            return await ctx.respond(f"Could not find command called `{_cmd.name}`.")
 
-            src = obj.callback.__code__
-            module = obj.callback.__module__
-            filename = src.co_filename
+        src = obj.callback.__code__
+        module = obj.callback.__module__
+        filename = src.co_filename
 
-        lines, firstlineno = inspect.getsourcelines(src)
-        if not module.startswith("discord"):
-            if filename is None:
-                return await ctx.respond(
-                    f"Could not find source for command `{_cmd.name}`."
-                )
+    lines, firstlineno = inspect.getsourcelines(src)
+    if not module.startswith("discord"):
+        if filename is None:
+            return await ctx.respond(
+                f"Could not find source for command `{_cmd.name}`."
+            )
 
-            location = os.path.relpath(filename).replace("\\", "/")
-        else:
-            location = module.replace(".", "/") + ".py"
+        location = os.path.relpath(filename).replace("\\", "/")
+    else:
+        location = module.replace(".", "/") + ".py"
 
-        await ctx.respond(
-            f"<{source_url}/blob/{branch}/{location}#L{firstlineno}-L{firstlineno + len(lines) - 1}>"
-        )
+    await ctx.respond(
+        f"<{source_url}/blob/{branch}/{location}#L{firstlineno}-L{firstlineno + len(lines) - 1}>"
+    )
 
 
 @tanjun.as_loader
