@@ -2,10 +2,10 @@ import hikari
 import tanjun
 import toolbox
 
-events = tanjun.Component()
+starboard = tanjun.Component()
 
 
-@events.with_listener(hikari.GuildJoinEvent)
+@starboard.with_listener(hikari.GuildJoinEvent)
 async def on_guild_join(event: hikari.GuildJoinEvent):
     member = event.get_guild().get_my_member()
     ch = event.get_guild().get_channel(event.get_guild().system_channel_id)
@@ -25,4 +25,4 @@ All configuration is done through `/settings`. If you need any help or support, 
 
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
-    client.add_component(events.copy())
+    client.add_component(starboard.copy())
