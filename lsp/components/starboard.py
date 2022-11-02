@@ -7,12 +7,12 @@ starboard = tanjun.Component()
 
 @starboard.with_listener(hikari.GuildJoinEvent)
 async def on_guild_join(event: hikari.GuildJoinEvent):
-    member = event.get_guild().get_my_member()
-    ch = event.get_guild().get_channel(event.get_guild().system_channel_id)
+    assert (member := event.guild.get_my_member())
+    assert (ch := event.guild.get_channel(event.guild.system_channel_id))  # type: ignore
 
     if toolbox.calculate_permissions(member, ch) & hikari.Permissions.SEND_MESSAGES:
         await event.app.rest.create_message(
-            ch,
+            ch.id,
             embed=hikari.Embed(
                 title="Beep Boop!",
                 description="""Thank you for inviting me! Type `/` to see what I can do!
