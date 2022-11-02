@@ -113,6 +113,7 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
     print(ctx.client.iter_slash_commands())
     print(list(ctx.client.iter_slash_commands()))
+    print(list(c.name for c in ctx.client.iter_slash_commands()))
     cmd = [
         cmd
         for cmd in ctx.client.iter_slash_commands()
