@@ -116,13 +116,13 @@ async def cmd_source(ctx: tanjun.abc.Context, cmd: str) -> None:
         for cmd in ctx.client.iter_slash_commands()
         if cmd.name == f"{cmd}"
     ][0]
-    source_url = "<https://github.com/st1xkz/LSP>"
+    source_url = "https://github.com/st1xkz/LSP"
     branch = "main"
 
     with open("./LICENSE") as f:
         license_ = f.readline().strip()
         if not cmd:
-            await ctx.respond(f"{source_url}")
+            await ctx.respond(f"<{source_url}>")
             return
         else:
             obj = ctx.client.iter_slash_commands(cmd.replace(".", " "))
