@@ -112,7 +112,7 @@ async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
     source_url = "https://github.com/st1xkz/LSP"
     branch = "main"
 
-    if _cmd is None:
+    if cmd is None:
         await ctx.respond(f"<{source_url}>")
         return
     else:
