@@ -109,6 +109,7 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
 async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
+    print(cmd)
     source_url = "https://github.com/st1xkz/LSP"
     branch = "main"
 
