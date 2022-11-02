@@ -112,12 +112,12 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 )
 async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
     print(ctx.client.iter_slash_commands())
-    print({list(ctx.client.iter_slash_commands())})
     cmd = [
         cmd
         for cmd in ctx.client.iter_slash_commands()
         if cmd.name == f"{cmd}"
     ][0]
+    print({list(ctx.client.iter_slash_commands())})
     source_url = "https://github.com/st1xkz/LSP"
     branch = "main"
 
