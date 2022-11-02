@@ -22,7 +22,7 @@ meta = tanjun.Component()
     owners_exempt=False,
 )
 @tanjun.as_slash_command("ping", "Shows bot's ping/latency")
-async def cmd_ping(
+async def ping(
     ctx: tanjun.abc.Context, client: alluka.Injected[hikari.GatewayBot]
 ) -> None:
     start = time.perf_counter()
@@ -44,8 +44,8 @@ async def cmd_ping(
     error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
     owners_exempt=False,
 )
-@tanjun.as_slash_command("bot-info", "Displays info about the bot")
-async def cmd_bot(
+@tanjun.as_slash_command("stats", "Displays info about the bot")
+async def stats(
     ctx: tanjun.abc.Context,
     bot: alluka.Injected[hikari.GatewayBot],
     client: alluka.Injected[tanjun.abc.Client],
@@ -110,8 +110,8 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 @tanjun.as_slash_command(
     "source", "Displays link to the bot's GitHub or to a specific command"
 )
-async def cmd_source(ctx: tanjun.abc.Context, cmd: str) -> None:
-    print(ctx.client.iter_slash_commands())
+async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
+    print(ctx.client.iter_slash_commands)
     cmd = [
         cmd
         for cmd in ctx.client.iter_slash_commands()
