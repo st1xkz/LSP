@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import os
 
 import hikari
@@ -13,23 +11,18 @@ from lsp.errors import *
 load_dotenv()
 
 
-class Bot(hikari.GatewayBot):
-    def run(self, **kwargs) -> None:
-
-        super().run(
-            status=hikari.Status.IDLE,
-            activity=hikari.Activity(
-                name="Oh, my Glob!", type=hikari.ActivityType.PLAYING
-            ),
-        )
-
-
 def build_bot() -> hikari.GatewayBot:
-    TOKEN = os.getenv("TOKEN", "")
-    return make_client(Bot(TOKEN, banner=None, intents=hikari.Intents.ALL))[1]
+    TOKEN = os.getenv("TOKEN")
+    bot = hikari.GatewayBot(
+        TOKEN,
+        banner=None,
+        intents=hikari.Intents.ALL,
+    )
+
+    return bot
 
 
-def make_client(bot: hikari.GatewayBot) -> tuple[tanjun.Client, hikari.GatewayBot]:
+def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
     client = tanjun.Client.from_gateway_bot(
         bot,
         declare_global_commands=True,
@@ -38,7 +31,7 @@ def make_client(bot: hikari.GatewayBot) -> tuple[tanjun.Client, hikari.GatewayBo
     client.load_modules("lsp.components.starboard")
     client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
 
-    return client, bot
+    return client
 
 
 if os.name != "nt":
