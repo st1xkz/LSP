@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import alluka
 import hikari
 import tanjun
-from psutil import Process, virtual_memory  # type: ignore
+from psutil import Process, virtual_memory # type: ignore
 
 from lsp.core import chron
 
@@ -151,7 +151,7 @@ async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(meta.copy())
     (
-        tanjun.InMemoryCooldownManager()  # type: ignore
+        tanjun.InMemoryCooldownManager() # type: ignore
         .set_bucket(
             "meta",
             tanjun.BucketResource.USER,
