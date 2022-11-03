@@ -7,3 +7,4 @@ if __name__ == "__main__":
         status=hikari.Status.IDLE,
         activity=hikari.Activity(name="Oh, my Glob!", type=hikari.ActivityType.PLAYING),
     )
+    
