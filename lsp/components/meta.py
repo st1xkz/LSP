@@ -98,6 +98,7 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
         await ctx.respond(embed=embed)
 
 
+"""
 @meta.with_slash_command
 @tanjun.with_cooldown(
     "meta",
@@ -145,6 +146,7 @@ async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
     await ctx.respond(
         f"<{source_url}/blob/{branch}/{location}#L{firstlineno}-L{firstlineno + len(lines) - 1}>"
     )
+"""
 
 
 @tanjun.as_loader
