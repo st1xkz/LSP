@@ -8,15 +8,17 @@ errors = tanjun.AnyHooks()
 
 @errors.with_on_error
 async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
+    assert ctx.cache
+    assert isinstance(ctx.command, tanjun.SlashCommand)
     users = [
         ctx.cache.get_user(user) for user in [690631795473121280, 994738626816647262]
     ]  # 1: main, 2: second
-
     await ctx.respond(
         f"Something went wrong during invocation of command `{ctx.command.name}`."
     )
 
     for user in users:
+        assert user
         await user.send(
             embed=hikari.Embed(
                 title=f"An unexpected `{type(exc).__name__}` occurred",
