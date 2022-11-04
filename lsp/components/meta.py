@@ -162,3 +162,4 @@ def load(client: tanjun.abc.Client) -> None:
         )
         .add_to_client(client)
     )
+    print(load)
