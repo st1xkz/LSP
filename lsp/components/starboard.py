@@ -4,8 +4,8 @@ import tanjun
 starboard = tanjun.Component()
 
 
-@starboard.with_listener(hikari.ReactionCreateEvent)
-async def on_reaction_create(event: hikari.ReactionCreateEvent):
+@starboard.with_listener(hikari.MemberCreateEvent)
+async def on_reaction_create(event: hikari.MemberCreateEvent):
     ...
 
 
