@@ -30,6 +30,7 @@ def make_client(bot: hikari.GatewayBot) -> tanjun.Client:
         declare_global_commands=True,
     )
     client.load_modules("lsp.components.meta")
+    client.load_modules("lsp.components.starboard")
     client.set_hooks(tanjun.AnyHooks().set_on_error(on_error))
 
     return client
