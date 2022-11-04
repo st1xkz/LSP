@@ -19,6 +19,8 @@ def build_bot() -> hikari.GatewayBot:
         intents=hikari.Intents.ALL,
     )
 
+    make_client(bot)
+
     return bot
 
 
