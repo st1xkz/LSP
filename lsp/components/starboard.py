@@ -12,6 +12,7 @@ async def on_reaction_create(event: hikari.GuildReactionAddEvent):
     if event.app.is_alive:
         return
     if not str(event.emoji_name) == "⭐":
+        print(str(event.emoji_name))
         return
 
     message = event.app.cache.get_message(
