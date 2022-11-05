@@ -135,13 +135,3 @@ async def source(ctx: tanjun.abc.Context, cmd: str) -> None:
 @tanjun.as_loader
 def load(client: tanjun.abc.Client) -> None:
     client.add_component(meta.copy())
-    (
-        tanjun.InMemoryCooldownManager()  # type: ignore
-        .set_bucket(
-            "meta",
-            tanjun.BucketResource.USER,
-            3,
-            10,
-        )
-        .add_to_client(client)
-    )
