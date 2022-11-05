@@ -18,7 +18,7 @@ async def on_reaction_create(event: hikari.GuildReactionAddEvent):
     num_reaction = ([reaction for reaction in message.reactions if str(reaction.emoji) == event.emoji_name][0]).count
     
     if num_reaction == min_reaction:
-        event.app.rest.create_message("this message has been starred.")
+        event.app.rest.create_message(1035754257686728734, "this message has been starred.")
 
 
 @tanjun.as_loader
