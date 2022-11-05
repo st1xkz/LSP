@@ -26,7 +26,7 @@ async def on_reaction_create(event: hikari.GuildReactionAddEvent):
     ).count
 
     if num_reaction == min_reaction:
-        event.app.rest.create_message(
+        await event.app.rest.create_message(
             1035754257686728734, "this message has been starred."
         )
 
