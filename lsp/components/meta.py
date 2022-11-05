@@ -16,11 +16,6 @@ meta = tanjun.Component()
 
 
 @meta.with_slash_command
-@tanjun.with_cooldown(
-    "meta",
-    error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
-    owners_exempt=False,
-)
 @tanjun.as_slash_command("ping", "Shows bot's ping/latency")
 async def ping(
     ctx: tanjun.abc.Context, client: alluka.Injected[hikari.GatewayBot]
@@ -39,11 +34,6 @@ async def ping(
 
 
 @meta.with_slash_command
-@tanjun.with_cooldown(
-    "meta",
-    error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
-    owners_exempt=False,
-)
 @tanjun.as_slash_command("stats", "Displays info about the bot")
 async def stats(
     ctx: tanjun.abc.Context,
@@ -99,11 +89,6 @@ Command Handler: **hikari-tanjun v{tanjun.__version__}**""",
 
 
 @meta.with_slash_command
-@tanjun.with_cooldown(
-    "meta",
-    error_message=f"Looks like you've been doing that a lot. Take a break for before trying again. <:blobpainpats:993961964369875016>",
-    owners_exempt=False,
-)
 @tanjun.with_str_slash_option("cmd", "the command to get the source for", default=None)
 @tanjun.as_slash_command(
     "source",
