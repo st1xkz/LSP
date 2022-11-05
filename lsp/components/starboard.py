@@ -4,7 +4,7 @@ import tanjun
 starboard = tanjun.Component()
 
 emoji = "⭐"
-min_reaction = 3
+min_reaction = 1
 
 
 @starboard.with_listener(hikari.GuildReactionAddEvent)
