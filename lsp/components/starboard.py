@@ -3,7 +3,7 @@ import tanjun
 
 starboard = tanjun.Component()
 
-emoji = "⭐"
+emoji = "\u2b50"
 min_reaction = 1  # Minimum reactions required to add the message to starboard
 
 
@@ -13,7 +13,7 @@ async def on_reaction_create(event: hikari.GuildReactionAddEvent):
     print(event.emoji_name)
     if event.app.is_alive:
         return
-    if not str(event.emoji_name) == "⭐":
+    if not str(event.emoji_name) == "\u2b50":
         return
 
     message = event.app.cache.get_message(
