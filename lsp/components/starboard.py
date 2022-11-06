@@ -10,10 +10,10 @@ min_reaction = 1  # Minimum reactions required to add the message to starboard
 @starboard.with_listener(hikari.GuildReactionAddEvent)
 async def on_reaction_create(event: hikari.GuildReactionAddEvent):
     # Make sure the bot is listening to events
+    print(event.emoji_name)
     if event.app.is_alive:
         return
     if not str(event.emoji_name) == "⭐":
-        print(event.emoji_name)
         return
 
     message = event.app.cache.get_message(
