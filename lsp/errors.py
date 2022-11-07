@@ -6,7 +6,7 @@ import lightbulb
 errors = lightbulb.Plugin("errors")
 
 
-@errors_plugin.listener(lightbulb.CommandErrorEvent)
+@errors.listener(lightbulb.CommandErrorEvent)
 async def on_error(event: lightbulb.CommandErrorEvent) -> None:
     users = [
         ctx.cache.get_user(user) for user in [690631795473121280, 994738626816647262]
