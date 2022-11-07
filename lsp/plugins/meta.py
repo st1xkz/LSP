@@ -11,7 +11,7 @@ from psutil import Process, virtual_memory  # type: ignore
 
 from lsp.core import chron
 
-meta = lightbulb.Plugin()
+meta = lightbulb.Plugin("meta")
 
 
 @meta.command

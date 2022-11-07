@@ -3,7 +3,7 @@ from traceback import format_exception
 import hikari
 import lightbulb
 
-errors = lightbulb.Plugin()
+errors = lightbulb.Plugin("errors")
 
 
 @errors_plugin.listener(lightbulb.CommandErrorEvent)

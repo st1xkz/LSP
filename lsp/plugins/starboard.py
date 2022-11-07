@@ -1,7 +1,7 @@
 import hikari
 import lightbulb
 
-starboard = lightbulb.Plugin()
+starboard = lightbulb.Plugin("starboard")
 
 emoji = "\u2b50"
 min_reaction = 1  # Minimum reactions required to add the message to starboard
