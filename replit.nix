@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.isort .
     pkgs.python38Full
   ];
   env = {

@@ -3,13 +3,11 @@ from traceback import format_exception
 import hikari
 import tanjun
 
-errors = tanjun.AnyHooks()
+errors = lightbulb.Plugin()
 
 
-@errors.with_on_error
-async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
-    assert ctx.cache
-    assert isinstance(ctx.command, tanjun.SlashCommand)
+@errors_plugin.listener(lightbulb.CommandErrorEvent)
+async def on_error(event: lightbulb.CommandErrorEvent) -> None:
     users = [
         ctx.cache.get_user(user) for user in [690631795473121280, 994738626816647262]
     ]  # 1: main, 2: second
@@ -27,7 +25,5 @@ async def on_error(ctx: tanjun.abc.Context, exc: Exception) -> None:
         )
 
 
-@errors.add_to_command
-@tanjun.as_slash_command("name", "description")
-async def slash_command(ctx: tanjun.abc.Context) -> None:
-    ...
+def load(bot: lightbulb.BotApp) -> None:
+    bot.add_plugin(errors)

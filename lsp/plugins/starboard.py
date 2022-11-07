@@ -1,14 +1,14 @@
 import hikari
-import tanjun
+import lightbulb
 
-starboard = tanjun.Component()
+starboard = lightbulb.Plugin()
 
 emoji = "\u2b50"
 min_reaction = 1  # Minimum reactions required to add the message to starboard
 
 
-@starboard.with_listener(hikari.GuildReactionAddEvent)
-async def on_reaction_create(event: hikari.GuildReactionAddEvent):
+@listen(hikari.GuildReactionAddEvent)
+async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
     # Make sure the bot is listening to events
     print(event.emoji_name)
     if event.app.is_alive:
@@ -16,9 +16,9 @@ async def on_reaction_create(event: hikari.GuildReactionAddEvent):
     if not str(event.emoji_name) == "\u2b50":
         return
 
-    message = event.app.cache.get_message(
+    message = event.bot.cache.get_message(
         event.message_id
-    ) or await event.app.rest.fetch_message(event.guild_id, event.message_id)
+    ) or await event.bot.rest.fetch_message(event.guild_id, event.message_id)
     num_reaction = (
         [
             reaction
@@ -28,11 +28,10 @@ async def on_reaction_create(event: hikari.GuildReactionAddEvent):
     ).count
 
     if num_reaction == min_reaction:
-        await event.app.rest.create_message(
+        await event.bot.rest.create_message(
             1035754257686728734, "this message has been starred."
         )
 
 
-@tanjun.as_loader
-def load(client: tanjun.abc.Client) -> None:
-    client.add_component(starboard.copy())
+def load(bot: lightbulb.BotApp) -> None:
+    bot.add_plugin(starboard)
