@@ -1,0 +1,9 @@
+             ,-,--.     _ __                ${reset}${bold_white}光 version: ${hikari_version} ${thin_white}[${hikari_git_sha1}]${reset}
+   _.-.    ,-.'-  _\ .-`.' ,`.              ${reset}${bold_white}interpreter: ${thin_white}${python_implementation} ${python_version}${reset}
+ .-,.'|   /==/_ ,_.'/==/, -   \             ${reset}${bold_white}running on: ${thin_white}${system_description}${reset}
+|==|, |   \==\  \  |==| _ .=. |             ${reset}${bold_white}source code: ${thin_white}https://github.com/st1xkz/bobert${reset}
+|==|- |    \==\ -\ |==| , '=',|             ${reset}${bold_white}installed at: ${thin_white}${hikari_install_location}${reset}
+|==|, |    _\==\ ,\|==|-  '..'  
+|==|- `-._/==/\/ _ |==|,  |     
+/==/ - , ,|==\ - , /==/ - |     
+`--`-----' `--`---'`--`---'     
