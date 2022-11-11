@@ -1,5 +1,6 @@
 import os
 
+import aiohttp
 import hikari
 import lightbulb
 import uvloop
@@ -7,13 +8,15 @@ from dotenv import load_dotenv
 
 from lsp.core import color_logs
 from lsp.errors import *
-import aiohttp
 
 load_dotenv()
 
 
 bot = lightbulb.BotApp(
-    TOKEN=os.getenv("TOKEN"), banner="assets", ignore_bots=True, intents=hikari.Intents.ALL,
+    TOKEN=os.getenv("TOKEN"),
+    banner="assets",
+    ignore_bots=True,
+    intents=hikari.Intents.ALL,
 )
 
 
