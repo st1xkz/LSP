@@ -1,1 +1,1 @@
-from .client import *
+from .bot import *

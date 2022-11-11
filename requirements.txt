@@ -1,4 +1,5 @@
-hikari-tanjun
+hikari
+hikari-lightbulb
 uvloop
 psutil
 python-dotenv
