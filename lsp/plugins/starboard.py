@@ -11,7 +11,7 @@ min_reaction = 1  # Minimum reactions required to add the message to starboard
 async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
     # Make sure the bot is listening to events
     print(event.emoji_name)
-    if not event.app.is_alive:
+    if not starboard.bot.is_alive:
         return
     if not str(event.emoji_name) == "\u2b50":
         return
