@@ -13,7 +13,7 @@ load_dotenv()
 
 
 bot = lightbulb.BotApp(
-    TOKEN=os.getenv("TOKEN"),
+    token=os.getenv("TOKEN"),
     banner=None,
     ignore_bots=True,
     intents=hikari.Intents.ALL,
