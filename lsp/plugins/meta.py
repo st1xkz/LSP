@@ -69,9 +69,11 @@ async def stats(ctx: lightbulb.Context) -> None:
                 description=f"""Guild Count: **{len(ctx.bot.cache.get_available_guilds_view())}**
 User Count: **{len(ctx.bot.cache.get_users_view())}**
 Command Count: **{len(ctx.bot.slash_commands)}**
+
 Uptime: **{uptime}**
 CPU Time: **{cpu_time}**
 Memory Usage: **{mem_usage:,.3f}/{mem_total:,.0f} MiB ({mem_of_total:,.0f}%)**
+
 Language: **Python**
 Python Version: **v{platform.python_version()}**
 Library: **hikari-py v{hikari.__version__}**
@@ -102,7 +104,7 @@ Command Handler: **hikari-lightbulb v{lightbulb.__version__}**""",
 @lightbulb.implements(lightbulb.SlashCommand)
 async def source(ctx: lightbulb.Context, cmd: str) -> None:
     _cmd = ctx.bot.get_slash_command(cmd)
-    source_url = "https://github.com/st1xkz/bobert"
+    source_url = "https://github.com/st1xkz/LSP"
     branch = "main"
 
     with open("./LICENSE") as f:
