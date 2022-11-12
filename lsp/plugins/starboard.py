@@ -18,7 +18,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
 
     message = starboard.bot.cache.get_message(
         event.message_id
-    ) or await starboard.bot.rest.fetch_message(event.guild_id, event.message_id)
+    ) or await starboard.bot.rest.fetch_message(event.channel_id, event.message_id)
     num_reaction = (
         [
             reaction
