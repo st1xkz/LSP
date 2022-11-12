@@ -16,9 +16,9 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
     if not str(event.emoji_name) == "\u2b50":
         return
 
-    message = event.bot.cache.get_message(
-        event.message_id
-    ) or await event.bot.rest.fetch_message(event.guild_id, event.message_id)
+    message = starboard.bot.cache.get_message(
+        starboard.message_id
+    ) or await starboard.bot.rest.fetch_message(event.guild_id, event.message_id)
     num_reaction = (
         [
             reaction
@@ -28,7 +28,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
     ).count
 
     if num_reaction == min_reaction:
-        await event.bot.rest.create_message(
+        await starboard.bot.rest.create_message(
             1035754257686728734, "this message has been starred."
         )
 
