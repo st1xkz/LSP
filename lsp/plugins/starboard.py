@@ -3,7 +3,7 @@ import lightbulb
 
 starboard = lightbulb.Plugin("starboard")
 
-emoji = "\u2b50"
+emoji = "⭐"
 min_reaction = 1  # Minimum reactions required to add the message to starboard
 
 
@@ -12,7 +12,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
     # Make sure the bot is listening to events
     if not starboard.bot.is_alive:
         return
-    if not str(event.emoji_name) == "\u2b50":
+    if not str(event.emoji_name) == "⭐":
         return
 
     message = starboard.bot.cache.get_message(
@@ -22,7 +22,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
         [
             reaction
             for reaction in message.reactions
-            if str(reaction.emoji) == event.emoji_name
+            if str(reaction.emoji.name) == event.emoji_name
         ][0]
     ).count
 
