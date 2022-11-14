@@ -27,7 +27,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
     if num_reaction == min_reaction:
         await starboard.bot.rest.create_message(
             1035754257686728734,
-            "this message has been starred.",
+            "⭐ x#number!",
             embed=hikari.Embed(description="hi", color=0xFCD203),
         )
 
