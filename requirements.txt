@@ -3,4 +3,3 @@ hikari-lightbulb
 uvloop
 psutil
 python-dotenv
-hikari-toolbox
