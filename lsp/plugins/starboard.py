@@ -35,10 +35,14 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
                 hikari.Embed(
                     title=f"Jump to message in #{starboard.bot.cache.get_guild_channel(message.channel_id).name}",
                     url=jump_url,
-                    description=f"{message.content}",
                     color=0xFCD203,
                     timestamp=datetime.now().astimezone(),
                 )
+                .set_author(
+                    name=f"{message.author.name}",
+                    icon=message.author.avatar_url or message.author.default_avatar_url,
+                )
+                .set_footer(text=f"ID: {message.id}")
             ),
         )
 
