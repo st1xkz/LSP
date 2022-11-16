@@ -17,10 +17,11 @@ meta = lightbulb.Plugin("meta")
 @meta.command
 @lightbulb.command(
     name="ping",
-    description="Shows bot's ping/latency",
+    description="Displays the ping/latency of the bot",
 )
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ping(ctx: lightbulb.Context) -> None:
+    # Check the heartbeat latency of the bot
     start = time.perf_counter()
     message = await ctx.respond(
         f"Pong! 🏓 \n" f"Ws Latency: **{ctx.bot.heartbeat_latency * 1000:.0f}ms**"
@@ -37,7 +38,7 @@ async def ping(ctx: lightbulb.Context) -> None:
 @meta.command
 @lightbulb.command(
     name="stats",
-    description="Displays info about the bot",
+    description="Displays the bot's information",
 )
 @lightbulb.implements(lightbulb.SlashCommand)
 async def stats(ctx: lightbulb.Context) -> None:
@@ -98,7 +99,7 @@ Command Handler: **hikari-lightbulb v{lightbulb.__version__}**""",
 )
 @lightbulb.command(
     name="source",
-    description="Displays link to the bot's GitHub or to a specific command",
+    description="Displays a link to the bot's GitHub page or a specific command",
     pass_options=True,
 )
 @lightbulb.implements(lightbulb.SlashCommand)
