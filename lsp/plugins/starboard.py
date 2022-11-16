@@ -28,7 +28,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
     jump_url = f"https://discord.com/channels/{message.guild_id}/{message.channel_id}/{message.id}"
 
     if num_reaction == min_reaction:
-        embed = hikai.Embed(
+        embed = hikari.Embed(
             title=f"Jump to message in #{starboard.bot.cache.get_guild_channel(mesage.channel_id).name}",
             url=jump_url,
             color=0xFCD203,
