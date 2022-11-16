@@ -29,7 +29,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
 
     if num_reaction == min_reaction:
         embed = hikari.Embed(
-            title=f"Jump to message in #{starboard.bot.cache.get_guild_channel(mesage.channel_id).name}",
+            title=f"Jump to message in #{starboard.bot.cache.get_guild_channel(message.channel_id).name}",
             url=jump_url,
             color=0xFCD203,
             timestamp=datetime.now().astimezone(),
