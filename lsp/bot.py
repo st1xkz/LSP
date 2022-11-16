@@ -12,7 +12,6 @@ from lsp.errors import *
 load_dotenv()
 
 
-
 bot = lightbulb.BotApp(
     token=os.getenv("TOKEN"),
     banner=None,

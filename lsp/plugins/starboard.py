@@ -1,5 +1,6 @@
 import hikari
 import lightbulb
+from datetime import datetime
 
 starboard = lightbulb.Plugin("starboard")
 
@@ -28,7 +29,13 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
         await starboard.bot.rest.create_message(
             1035754257686728734,
             "⭐",
-            embed=hikari.Embed(description="hi", color=0xFCD203),
+            embed=(
+                hikari.Embed(
+                    description=f"{message.content}",
+                    color=0xFCD203,
+                    timestamp=datetime.now().astimezone()
+                )
+            )
         )
 
 
