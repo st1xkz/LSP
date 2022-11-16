@@ -1,6 +1,7 @@
+from datetime import datetime
+
 import hikari
 import lightbulb
-from datetime import datetime
 
 starboard = lightbulb.Plugin("starboard")
 
@@ -24,6 +25,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
             if str(reaction.emoji.name) == event.emoji_name
         ][0]
     ).count
+    jump_url = f"https://discord.com/channels/{message.guild_id}/{message.channel_id}/{message.id}"
 
     if num_reaction == min_reaction:
         await starboard.bot.rest.create_message(
@@ -31,11 +33,13 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
             "⭐",
             embed=(
                 hikari.Embed(
+                    title=f"Jump to message in #{starboard.bot.cache.get_guild_channel(message.channel_id).name}",
+                    url=jump_url,
                     description=f"{message.content}",
                     color=0xFCD203,
-                    timestamp=datetime.now().astimezone()
+                    timestamp=datetime.now().astimezone(),
                 )
-            )
+            ),
         )
 
 
