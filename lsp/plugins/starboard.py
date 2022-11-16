@@ -39,7 +39,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
                     timestamp=datetime.now().astimezone(),
                 )
                 .set_author(
-                    name=f"{message.author.name}",
+                    name=f"{message.author}",
                     icon=message.author.avatar_url or message.author.default_avatar_url,
                 )
                 .set_footer(text=f"ID: {message.id}")
