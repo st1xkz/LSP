@@ -18,13 +18,13 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
         return
 
     message = await starboard.bot.rest.fetch_message(event.channel_id, event.message_id)
-    num_reaction = (
+    num_reaction = len(
         [
             reaction
             for reaction in message.reactions
             if str(reaction.emoji.name) == event.emoji_name
         ][0]
-    ).count
+    )
     jump_url = f"https://discord.com/channels/{message.guild_id}/{message.channel_id}/{message.id}"
 
     if num_reaction == min_reaction:
