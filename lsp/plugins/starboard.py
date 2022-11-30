@@ -48,5 +48,12 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
         await starboard.bot.rest.create_message(1035754257686728734, "⭐", embed=embed)
 
 
+@starboard.listener(hikari.GuildReactionDeleteEvent)
+async def reaction_deleted(event: hikari.GuildReactionDeleteEvent) -> None:
+    # Make sure the bot is listening to events
+    if not starboard.bot.is_alive:
+        return
+
+
 def load(bot: lightbulb.BotApp) -> None:
     bot.add_plugin(starboard)
