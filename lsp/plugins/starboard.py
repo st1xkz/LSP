@@ -53,6 +53,7 @@ async def reaction_deleted(event: hikari.GuildReactionDeleteEvent) -> None:
     # Make sure the bot is listening to events
     if not starboard.bot.is_alive:
         return
+        
 
 
 def load(bot: lightbulb.BotApp) -> None:
