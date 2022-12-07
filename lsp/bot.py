@@ -29,9 +29,12 @@ async def on_starting(event: hikari.StartingEvent) -> None:
 @bot.listen()
 async def startup_hook(event: hikari.StartingEvent) -> None:
     # Create database pool
-    bot.db_pool: asyncpg.Pool = await asyncpg.create_pool(host=os.getenv("SQL_HOST"))
+    bot.db_pool: asyncpg.Pool = await asyncpg.create_pool(
+        host=os.getenv("SQL_HOST"), max_size=5, min_size=5
+    )
 
     async with bot.db_pool.acquire() as con:
+        """
         await con.execute(
             CREATE TABLE IF NOT EXISTS star (
                 id SERIAL PRIMARY KEY,
@@ -39,6 +42,7 @@ async def startup_hook(event: hikari.StartingEvent) -> None:
                 password TEXT NOT NULL
             );
         )
+        """
         # Create a connection server if needed
         async with con.cursor() as cursor:
             await cursor.fetch("Fetch query...")
