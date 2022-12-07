@@ -37,7 +37,6 @@ async def startup_hook(event: hikari.StartingEvent) -> None:
         await con.execute(
             """
             CREATE TABLE IF NOT EXISTS star (
-                id INT,
                 msg_id INT,
                 ch_id INT
             );
