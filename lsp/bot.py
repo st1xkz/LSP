@@ -29,7 +29,7 @@ async def on_starting(event: hikari.StartingEvent) -> None:
 @bot.listen()
 async def startup_hook(event: hikari.StartingEvent) -> None:
     # Create database pool
-    bot.db_pool: asyncpg.Pool = await asyncpg.create_pool(
+    event.bot.db_pool: asyncpg.Pool = await asyncpg.create_pool(
         os.getenv("SQL_HOST"), max_size=5, min_size=5
     )
 
