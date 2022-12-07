@@ -1,6 +1,7 @@
 import os
 
 import aiohttp
+import asyncpg
 import hikari
 import lightbulb
 import uvloop
@@ -23,6 +24,26 @@ bot = lightbulb.BotApp(
 @bot.listen()
 async def on_starting(event: hikari.StartingEvent) -> None:
     bot.d.aio_session = aiohttp.ClientSession()
+
+
+@bot.listen()
+async def startup_hook(event: hikari.StartingEvent) -> None:
+    # Create database pool
+    bot.db_pool: asyncpg.Pool = await asyncpg.create_pool("")
+
+    async with bot.db_pool.acquire() as con:
+        await con.execute(
+            """
+            CREATE TABLE IF NOT EXISTS users (
+                id SERIAL PRIMARY KEY,
+                username TEXT NOT NULL,
+                password TEXT NOT NULL
+            );
+            """
+        )
+        # Create a connection server if needed
+        async with con.cursor() as cursor:
+            await cursor.fetch("Fetch query...")
 
 
 bot.load_extensions_from("./lsp/plugins/", must_exist=True)
