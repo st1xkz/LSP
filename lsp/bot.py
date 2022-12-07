@@ -26,6 +26,7 @@ async def on_starting(event: hikari.StartingEvent) -> None:
     bot.d.aio_session = aiohttp.ClientSession()
 
 
+
 @bot.listen()
 async def startup_hook(event: hikari.StartingEvent) -> None:
     # Create database pool
