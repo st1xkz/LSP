@@ -33,13 +33,11 @@ async def startup_hook(event: hikari.StartingEvent) -> None:
 
     async with bot.db_pool.acquire() as con:
         await con.execute(
-            """
-            CREATE TABLE IF NOT EXISTS users (
+            CREATE TABLE IF NOT EXISTS star (
                 id SERIAL PRIMARY KEY,
                 username TEXT NOT NULL,
                 password TEXT NOT NULL
             );
-            """
         )
         # Create a connection server if needed
         async with con.cursor() as cursor:
