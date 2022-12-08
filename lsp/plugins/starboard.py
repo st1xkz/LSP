@@ -47,13 +47,10 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
             embed.description = message.content
 
     async with event.app.d.db_pool.acquire() as con:
-        async with con.cursor(star) as cursor:
-
-            msg = await starboard.bot.rest.create_message(1035754257686728734, f"⭐ {len(num_reaction)}", embed=embed)
-
-            await cursor.execute(
-                "INSERT INTO star VALUES ($1, $2)", msg.id, msg.channel_id
-            )
+        msg = await starboard.bot.rest.create_message(
+            1035754257686728734, f"⭐ {len(num_reaction)}", embed=embed
+        )
+        await con.execute("INSERT INTO star VALUES ($1, $2)", msg.id, msg.channel_id)
 
 
 @starboard.listener(hikari.GuildReactionDeleteEvent)
