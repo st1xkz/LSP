@@ -30,7 +30,7 @@ async def on_starting(event: hikari.StartingEvent) -> None:
         os.getenv("SQL_HOST"), max_size=4, min_size=4
     )
 
-    async with bot.db_pool.acquire() as con:
+    async with bot.d.db_pool.acquire() as con:
         await con.execute(
             """
             CREATE TABLE IF NOT EXISTS star (
