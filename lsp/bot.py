@@ -39,9 +39,6 @@ async def on_starting(event: hikari.StartingEvent) -> None:
             );
             """
         )
-        # Create a connection server if needed
-        async with con.cursor() as cursor:
-            await cursor.fetch("Fetch query...")
 
 
 bot.load_extensions_from("./lsp/plugins/", must_exist=True)
