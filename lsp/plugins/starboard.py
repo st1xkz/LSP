@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import asyncpg
 import hikari
 import lightbulb
 
@@ -45,7 +46,14 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
         if message.content:
             embed.description = message.content
 
-        await starboard.bot.rest.create_message(1035754257686728734, "⭐", embed=embed)
+    async with event.bot.d.db_pool.acquire() as con:
+        async with con.cursor() as cursor:
+
+            msg = await starboard.bot.rest.create_message(1035754257686728734, "⭐", embed=embed)
+
+            await cursor.execute(
+                "INSERT INTO star VALUES ($1, $2)", msg.id, msg.channel_id
+            )
 
 
 @starboard.listener(hikari.GuildReactionDeleteEvent)
