@@ -48,7 +48,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
 
     async with event.app.d.db_pool.acquire() as con:
         msg = await starboard.bot.rest.create_message(
-            1035754257686728734, f"⭐ {len(num_reaction)}", embed=embed
+            1035754257686728734, f"⭐ {num_reaction}", embed=embed
         )
         await con.execute("INSERT INTO star VALUES ($1, $2)", msg.id, msg.channel_id)
 
