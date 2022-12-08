@@ -40,7 +40,7 @@ async def on_starting(event: hikari.StartingEvent) -> None:
             """
         )
         # Create a connection server if needed
-        async with con.cursor() as cursor:
+        async with con.cursor(query) as cursor:
             await cursor.fetch("Fetch query...")
 
 
