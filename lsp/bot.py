@@ -46,3 +46,4 @@ bot.load_extensions_from("./lsp/plugins/", must_exist=True)
 
 if os.name != "nt":
     uvloop.install()
+
