@@ -34,8 +34,8 @@ async def on_starting(event: hikari.StartingEvent) -> None:
         await con.execute(
             """
             CREATE TABLE IF NOT EXISTS star (
-                msg_id INT,
-                ch_id INT
+                msg_id BIGINT,
+                ch_id BIGINT
             );
             """
         )
