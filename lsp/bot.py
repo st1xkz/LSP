@@ -23,8 +23,14 @@ bot = lightbulb.BotApp(
 
 @bot.listen()
 async def on_started(event: hikari.StartedEvent) -> None:
-    user = 690631795473121280
-    await user.send("⏰ LSP is now online!")
+    users = [
+        event.ctx.cache.get_user(user)
+        for user in [690631795473121280, 994738626816647262]
+    ]  # 1: main, 2: second
+
+    for user in users:
+        assert user
+        await user.send("⏰ LSP is now online!")
 
 
 @bot.listen()
