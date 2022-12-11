@@ -29,7 +29,6 @@ async def on_started(event: hikari.StartedEvent) -> None:
     ]  # 1: main, 2: second
 
     for user in users:
-        assert user
         await user.send("⏰ LSP is now online!")
 
 
