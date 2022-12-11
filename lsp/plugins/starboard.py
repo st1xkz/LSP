@@ -15,7 +15,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
     # Make sure the bot is listening to events
     if not starboard.bot.is_alive:
         return
-    if not str(event.emoji_name) == "⭐":
+    if not str(event.is_for_emoji) == "⭐":
         return
 
     message = await starboard.bot.rest.fetch_message(event.channel_id, event.message_id)
