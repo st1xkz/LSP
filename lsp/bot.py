@@ -22,6 +22,12 @@ bot = lightbulb.BotApp(
 
 
 @bot.listen()
+async def on_started(event: hikari.StartedEvent) -> None:
+    user = 690631795473121280
+    await user.send("⏰ LSP is now online!")
+
+
+@bot.listen()
 async def on_starting(event: hikari.StartingEvent) -> None:
     bot.d.aio_session = aiohttp.ClientSession()
 
