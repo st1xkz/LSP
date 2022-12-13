@@ -108,3 +108,4 @@ async def reaction_removed(event: hikari.GuildReactionDeleteEvent) -> None:
 
 def load(bot: lightbulb.BotApp) -> None:
     bot.add_plugin(starboard)
+    
