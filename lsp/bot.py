@@ -22,17 +22,6 @@ bot = lightbulb.BotApp(
 
 
 @bot.listen()
-async def on_started(event: hikari.StartedEvent) -> None:
-    users = [
-        event.app.cache.get_user(user)
-        for user in [690631795473121280, 994738626816647262]
-    ]  # 1: main, 2: second
-
-    for user in users:
-        await user.send("⏰ LSP is now online!")
-
-
-@bot.listen()
 async def on_starting(event: hikari.StartingEvent) -> None:
     bot.d.aio_session = aiohttp.ClientSession()
 
