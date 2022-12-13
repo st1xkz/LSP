@@ -12,10 +12,7 @@ min_reaction = 1  # Minimum reactions required to add the message to starboard
 
 @starboard.listener(hikari.GuildReactionAddEvent)
 async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
-    # Make sure the bot is listening to events
-    if not starboard.bot.is_alive:
-        return
-    if not str(event.is_for_emoji) == "⭐":
+    if not event.is_for_emoji("⭐") :
         return
 
     message = await starboard.bot.rest.fetch_message(event.channel_id, event.message_id)
@@ -51,8 +48,15 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
                 1035754257686728734, f"⭐ {num_reaction}", embed=embed
             )
             await con.execute(
-                "INSERT INTO star VALUES ($1, $2)", msg.id, msg.channel_id
+                "INSERT INTO star VALUES ($1, $2, $3)", event.message_id,msg.id, msg.channel_id
             )
+    if num_reaction> min_reaction:
+        async with event.app.d.db_pool.acquire() as con:
+            con: asyncpg.connection.Connection
+            data = await con.fetchrow("SELECT * FROM star WHERE og_msg_id = $1",event.message_id)
+            if not data: return 
+            await starboard.bot.rest.edit_message(data.get("ch_id"), data.get("msg_id"), content=f"⭐ {num_reaction}")
+            
 
 
 @starboard.listener(hikari.GuildReactionDeleteEvent)
