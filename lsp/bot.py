@@ -45,6 +45,7 @@ async def on_starting(event: hikari.StartingEvent) -> None:
         await con.execute(
             """
             CREATE TABLE IF NOT EXISTS star (
+                og_msg_id BIGINT,
                 msg_id BIGINT,
                 ch_id BIGINT
             );
