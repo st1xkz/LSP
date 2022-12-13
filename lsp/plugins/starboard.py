@@ -67,10 +67,43 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
 
 
 @starboard.listener(hikari.GuildReactionDeleteEvent)
-async def reaction_deleted(event: hikari.GuildReactionDeleteEvent) -> None:
-    # Make sure the bot is listening to events
-    if not starboard.bot.is_alive:
+async def reaction_removed(event: hikari.GuildReactionDeleteEvent) -> None:
+    if not event.is_for_emoji("⭐"):
         return
+
+    message = await starboard.bot.rest.fetch_message(event.channel_id, event.message_id)
+    num_reaction = (
+        [
+            reaction
+            for reaction in message.reactions
+            if str(reaction.emoji.name) == event.emoji_name
+        ][0]
+    ).count
+    jump_url = f"https://discord.com/channels/{message.guild_id}/{message.channel_id}/{message_id}"
+
+    if num_reaction >= min_reaction:
+        async with evet.app.d.db_pool.acquire() as con:
+            con: asyncpg.connection.Connection
+            data = await con.fetchrow(
+                "SELECT * FROM star WHERE og_msg_id = $1", event.message_id
+            )
+            if not data:
+                return
+            await starboard.bot.rest.edit_message(
+                data.get("ch_id"), data.get("msg_id"), content=f"⭐ {num_reaction}"
+            )
+
+    else:
+        async with event.app.d.db_pool.acquire() as con:
+            con: asyncpg.connection.Connection
+            data = await con.fetchrow(
+                "SELECT * FROM star WHERE og_msg_id = $1", event.message_id
+            )
+            if not data:
+                return
+            await starboard.bot.rest.delete_message(
+                data.get("ch_id"), data.get("msg_id")
+            )
 
 
 def load(bot: lightbulb.BotApp) -> None:
