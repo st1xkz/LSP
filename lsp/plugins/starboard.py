@@ -29,7 +29,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
         embed = hikari.Embed(
             title=f"Jump to message in #{starboard.bot.cache.get_guild_channel(message.channel_id).name}",
             url=jump_url,
-            color=0xFABD2F,
+            color=0xFBD106,
             timestamp=datetime.now().astimezone(),
         )
         embed.set_author(
@@ -46,7 +46,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
         async with event.app.d.db_pool.acquire() as con:
             msg = await starboard.bot.rest.create_message(
                 1035754257686728734,
-                f"⭐ x{num_reaction} ~ I know you want to slump up on these lumps, but you can't cuz you're a chump.",
+                f"Oh, my Glob! You're a ⭐ x{num_reaction}!",
                 embed=embed,
             )
             await con.execute(
@@ -66,7 +66,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
             await starboard.bot.rest.edit_message(
                 data.get("ch_id"),
                 data.get("msg_id"),
-                content=f"⭐ x{num_reaction} ~ I know you want to slump up on these lumps, but you can't cuz you're a chump.",
+                content=f"Oh, my Glob! You're a ⭐ x{num_reaction}!",
             )
 
 
@@ -99,7 +99,7 @@ async def reaction_removed(event: hikari.GuildReactionDeleteEvent) -> None:
             await starboard.bot.rest.edit_message(
                 data.get("ch_id"),
                 data.get("msg_id"),
-                content=f"⭐ x{num_reaction} ~ I know you want to slump up on these lumps, but you can't cuz you're a chump.",
+                content=f"Oh, my Glob! You're a ⭐ x{num_reaction}!",
             )
 
     else:
