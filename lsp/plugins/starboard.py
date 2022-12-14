@@ -79,7 +79,7 @@ async def reaction_removed(event: hikari.GuildReactionDeleteEvent) -> None:
             if str(reaction.emoji.name) == event.emoji_name
         ][0]
     ).count
-    jump_url = f"https://discord.com/channels/{message.guild_id}/{message.channel_id}/{message_id}"
+    jump_url = f"https://discord.com/channels/{message.guild_id}/{message.channel_id}/{message.id}"
 
     if num_reaction >= min_reaction:
         async with evet.app.d.db_pool.acquire() as con:
