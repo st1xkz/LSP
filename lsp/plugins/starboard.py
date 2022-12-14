@@ -72,13 +72,16 @@ async def reaction_removed(event: hikari.GuildReactionDeleteEvent) -> None:
         return
 
     message = await starboard.bot.rest.fetch_message(event.channel_id, event.message_id)
-    num_reaction = (
-        [
-            reaction
-            for reaction in message.reactions
-            if str(reaction.emoji.name) == event.emoji_name
-        ][0]
-    ).count
+    try:
+        num_reaction = (
+            [
+                reaction
+                for reaction in message.reactions
+                if str(reaction.emoji.name) == event.emoji_name
+            ][0]
+        ).count
+    except IndexError:
+        num_reaction = 0
     jump_url = f"https://discord.com/channels/{message.guild_id}/{message.channel_id}/{message.id}"
 
     if num_reaction >= min_reaction:
