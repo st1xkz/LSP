@@ -1,5 +1,5 @@
-,--.     ,---.   ,------.  
-|  |    '   .-'  |  .--. ' 
-|  |    `.  `-.  |  '--' | 
-|  '--. .-'    | |  | --'  
-`-----' `-----'  `--'                                 
+[38;2;242;202;80m,--.     ,---.   ,------.              ${reset}${bold_white}光 version: ${hikari_version} ${thin_white}[${hikari_git_sha1}]${reset}
+[38;2;33;64;61m|  |    '   .-'  |  .--. '             ${reset}${bold_white}interpreter: ${thin_white}${python_implementation} ${python_version}${reset}
+[38;2;45;95;115m|  |    `.  `-.  |  '--' |             ${reset}${bold_white}running on: ${thin_white}${system_description}${reset}
+[38;2;184;127;222m|  '--. .-'    | |  | --'              ${reset}${bold_white}source code: ${thin_white}https://github.com/st1xkz/LSP${reset}
+[38;2;109;77;140m`-----' `-----'  `--'                  ${reset}${bold_white}installed at: ${thin_white}${hikari_install_location}${reset}                            
