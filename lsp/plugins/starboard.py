@@ -7,7 +7,7 @@ import lightbulb
 starboard = lightbulb.Plugin("starboard")
 
 emoji = "⭐"
-min_reaction = 1  # Minimum reactions required to add the message to starboard
+min_reaction = 3  # Minimum reactions required to add the message to starboard
 
 
 @starboard.listener(hikari.GuildReactionAddEvent)
@@ -45,7 +45,7 @@ async def reaction_added(event: hikari.GuildReactionAddEvent) -> None:
 
         async with event.app.d.db_pool.acquire() as con:
             msg = await starboard.bot.rest.create_message(
-                1035754257686728734,
+                825213621092220930,
                 f"Oh, my Glob! You're a ⭐ x{num_reaction}!",
                 embed=embed,
             )
