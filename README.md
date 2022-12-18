@@ -10,7 +10,7 @@
   
 </div>
 
-A simple, single-server Discord starboard bot. [ still in development ]
+A simple, single-server Discord starboard bot based off the show Adventure Time.
 
 - Created on July 12, 2022
 - Written in Python using [`hikari`](https://github.com/hikari-py/hikari) and [`hikari-lightbulb`](https://github.com/tandemdude/hikari-lightbulb)
