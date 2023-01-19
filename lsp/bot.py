@@ -27,7 +27,7 @@ async def on_starting(event: hikari.StartingEvent) -> None:
 
     # Create database pool
     bot.d.db_pool: asyncpg.Pool = await asyncpg.create_pool(
-        os.getenv("SQL_HOST"), max_size=4, min_size=4
+        os.getenv("PGSQL_HOST"), max_size=4, min_size=4
     )
 
     async with bot.d.db_pool.acquire() as con:
