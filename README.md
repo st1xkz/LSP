@@ -1,7 +1,5 @@
 <div align="center">
 
-# Lumpy Space Princess
-
 ![lsp](https://cdn.discordapp.com/attachments/993567995936915536/1036812475947024404/image.png)
 
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-390/)
