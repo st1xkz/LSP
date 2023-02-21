@@ -75,6 +75,7 @@ Uptime: **{uptime}**
 CPU Time: **{cpu_time}**
 Memory Usage: **{mem_usage:,.3f}/{mem_total:,.0f} MiB ({mem_of_total:,.0f}%)**
 
+Platform: **{platform.system()}**
 Language: **Python**
 Python Version: **v{platform.python_version()}**
 Library: **hikari-py v{hikari.__version__}**
