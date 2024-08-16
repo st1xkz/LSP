@@ -20,8 +20,7 @@ meta = lightbulb.Plugin("meta")
     description="Displays the ping/latency of the bot",
 )
 @lightbulb.implements(lightbulb.SlashCommand)
-async def ping(ctx: lightbulb.Context) -> None:
-    # Check the heartbeat latency of the bot
+async def ping_cmd(ctx: lightbulb.Context) -> None:
     start = time.perf_counter()
     message = await ctx.respond(
         f"Pong! 🏓 \n" f"Ws Latency: **{ctx.bot.heartbeat_latency * 1000:.0f}ms**"
@@ -41,7 +40,7 @@ async def ping(ctx: lightbulb.Context) -> None:
     description="Displays the bot's information",
 )
 @lightbulb.implements(lightbulb.SlashCommand)
-async def stats(ctx: lightbulb.Context) -> None:
+async def stats_cmd(ctx: lightbulb.Context) -> None:
     if not (guild := ctx.get_guild()):
         return
 
@@ -80,13 +79,13 @@ Language: **Python**
 Python Version: **v{platform.python_version()}**
 Library: **hikari-py v{hikari.__version__}**
 Command Handler: **hikari-lightbulb v{lightbulb.__version__}**""",
-                color=0xB87FDE,
+                color=0xEBDBB2,
                 timestamp=datetime.now().astimezone(),
             )
             .set_thumbnail(
-                bot_user.avatar_url or bot_user.default_avatar_url,
+                bot_user.avatar_url if bot_user and bot_user.avatar_url else None
             )
-            .set_footer(text=f"Bot developed by sticks#5822")
+            .set_footer(text="Bot developed by st1xkz")
         )
         await ctx.respond(embed=embed)
 

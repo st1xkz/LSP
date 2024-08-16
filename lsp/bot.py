@@ -22,24 +22,24 @@ bot = lightbulb.BotApp(
 
 
 @bot.listen()
-async def on_starting(event: hikari.StartingEvent) -> None:
-    bot.d.aio_session = aiohttp.ClientSession()
+async def on_star_starting(event: hikari.StartingEvent) -> None:
+    bot.d.star_pool = await asyncpg.create_pool(os.environ.get("PGSQL_HOST"))
+    bot.d.aio_star_session = aiohttp.ClientSession()
 
-    # Create database pool
-    bot.d.db_pool: asyncpg.Pool = await asyncpg.create_pool(
-        os.getenv("PGSQL_HOST"), max_size=4, min_size=4
+    await bot.d.star_pool.execute(
+        """
+        CREATE TABLE IF NOT EXISTS star (
+            og_msg_id BIGINT,
+            msg_id BIGINT,
+            ch_id BIGINT
+        );
+        """
     )
 
-    async with bot.d.db_pool.acquire() as con:
-        await con.execute(
-            """
-            CREATE TABLE IF NOT EXISTS star (
-                og_msg_id BIGINT,
-                msg_id BIGINT,
-                ch_id BIGINT
-            );
-            """
-        )
+
+@bot.listen()
+async def on_star_stopping(event: hikari.StoppingEvent) -> None:
+    await bot.d.aio_star_session.close()
 
 
 bot.load_extensions_from("./lsp/plugins/", must_exist=True)
